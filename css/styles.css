@@ -545,6 +545,51 @@ ul { list-style: none; }
     margin: 0.5rem 0 1.25rem;
 }
 .hero-tags { margin-top: 2rem; }
+
+/* Each headline line sits in its own mask so it can slide up from behind it.
+   The padding/margin pair stops the mask clipping descenders. */
+.hero-title .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+    margin-bottom: -0.06em;
+}
+.hero-title .line > span { display: block; }
+
+/* ---------- Hero entrance (on load) ----------
+   `backwards` fill means each element holds its start state during its delay
+   and returns to its natural state afterwards, so nothing is left overridden.
+   The .hero-anim class is removed once the sequence finishes, otherwise the
+   carousel would replay the entrance on every slide change. */
+@keyframes heroLineUp { from { transform: translateY(105%); } }
+@keyframes heroFadeUp { from { opacity: 0; transform: translateY(18px); } }
+@keyframes heroMediaIn { from { transform: scale(1.07); } }
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero-anim .hero-bg.active {
+        animation: heroMediaIn 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    }
+    .hero-anim .hero-slide.active .eyebrow {
+        animation: heroFadeUp 0.7s ease-out 0.05s backwards;
+    }
+    .hero-anim .hero-slide.active .hero-title .line > span {
+        animation: heroLineUp 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    }
+    .hero-anim .hero-slide.active .hero-title .line:nth-child(1) > span { animation-delay: 0.18s; }
+    .hero-anim .hero-slide.active .hero-title .line:nth-child(2) > span { animation-delay: 0.30s; }
+    .hero-anim .hero-slide.active .hero-sub {
+        animation: heroFadeUp 0.7s ease-out 0.5s backwards;
+    }
+    .hero-anim .hero-slide.active .btn {
+        animation: heroFadeUp 0.7s ease-out 0.62s backwards;
+    }
+    .hero-anim .hero-tags .pill { animation: heroFadeUp 0.6s ease-out backwards; }
+    .hero-anim .hero-tags .pill:nth-child(1) { animation-delay: 0.74s; }
+    .hero-anim .hero-tags .pill:nth-child(2) { animation-delay: 0.82s; }
+    .hero-anim .hero-tags .pill:nth-child(3) { animation-delay: 0.90s; }
+    .hero-anim .hero-tags .pill:nth-child(4) { animation-delay: 0.98s; }
+    .hero-anim .hero-dots { animation: heroFadeUp 0.6s ease-out 1.06s backwards; }
+}
 .hero-sub {
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.9);
@@ -805,41 +850,87 @@ ul { list-style: none; }
 /* ================================================================
    STATEMENT + STAGGERED CARDS
    ================================================================ */
-.statement-section { padding: 5.5rem 0 4rem; background: #fff; }
-.statement-section .display-lg { max-width: 15ch; margin-bottom: 3.5rem; }
+.statement-section { padding: 5.5rem 0 4.5rem; background: #fff; }
+/* Lighter and wider than the other display headings, per the reference */
+.statement-head {
+    font-size: clamp(1.35rem, 2.7vw, 2.55rem);
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    max-width: 30ch;
+    color: var(--text-dark);
+}
 
-.stagger-cards {
+.statement-body {
+    display: grid;
+    grid-template-columns: 1fr 2.8fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-top: 3.5rem;
+}
+.statement-body .kicker {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-dark);
+}
+
+.scard-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    align-items: start;
 }
 .scard { display: block; text-decoration: none; }
-/* Offsets are what make the row read as composed rather than gridded */
-.scard:nth-child(2) { margin-top: 3.5rem; }
-.scard:nth-child(3) { margin-top: 1.5rem; }
 .scard-media {
     display: block;
-    aspect-ratio: 4 / 5;
-    border-radius: 14px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+.scard-img {
+    display: block;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     transition: transform var(--t);
 }
-.scard:hover .scard-media { transform: translateY(-6px); }
-.scard-label {
+.scard:hover .scard-img { transform: scale(1.04); }
+
+.scard-foot {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 1rem;
-    margin-top: 0.9rem;
-    font-size: 0.82rem;
+    margin-top: 0.85rem;
+}
+.scard-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+.scard-link {
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
-.scard-label span { color: var(--text-light); font-weight: 500; }
+.scard:hover .scard-link { color: var(--green-mid); }
+
+.scard-text {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-mid);
+}
 
 /* ================================================================
    BIG TITLE + FULL-BLEED MEDIA
@@ -847,8 +938,53 @@ ul { list-style: none; }
 .bigtitle-section { padding: 3rem 0 0; background: #fff; overflow: hidden; }
 .bigtitle-section .display-xl {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.products-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+}
+.products-blurb {
+    margin: 0;
+    max-width: 58ch;
+    font-size: 0.74rem;
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+.products-pills { flex-wrap: nowrap; }
+.meta-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: var(--text-light);
+    margin-right: 0.15rem;
+}
+.meta-icon svg { width: 100%; height: 100%; }
+.meta-arrow {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(26, 77, 46, 0.3);
+    border-radius: 50%;
     color: var(--green-dark);
+    transition: background var(--t), color var(--t), border-color var(--t);
+}
+.meta-arrow svg { width: 16px; height: 16px; }
+.meta-arrow:hover {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+    color: #fff;
 }
 .fullbleed-media {
     height: clamp(260px, 42vw, 520px);
@@ -1005,6 +1141,57 @@ ul { list-style: none; }
    container, so sticky/fixed positioning still works. */
 .js-reveal section { overflow-x: clip; }
 
+/* Letter variant: each character pops in left to right. Order comes from an
+   inline --i on every letter, since nth-child restarts inside each word. */
+.letter-pop > span,
+.letter-pop > span > span { display: inline-block; }
+
+.js-reveal .reveal-letters > span > span {
+    opacity: 0;
+    transform: translateY(0.35em) scale(0.86);
+    transition:
+        opacity 0.45s ease-out,
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.js-reveal .reveal-letters.is-visible > span > span {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--i, 0) * 45ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal-letters > span > span {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Mask variant: the child slides up from behind a clipped edge. */
+.js-reveal .reveal-mask { overflow: hidden; }
+.js-reveal .reveal-mask > * {
+    transform: translateY(100%);
+    transition: transform 0.95s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js-reveal .reveal-mask.is-visible > * { transform: none; }
+
+/* Media inside a staggered row scales back to rest as the card arrives */
+.js-reveal .reveal-stagger .scard-img {
+    transform: scale(1.14);
+    transition: transform 0.95s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js-reveal .reveal-stagger.is-visible .scard-img { transform: none; }
+.js-reveal .reveal-stagger.is-visible > *:nth-child(2) .scard-img { transition-delay: 0.12s; }
+.js-reveal .reveal-stagger.is-visible > *:nth-child(3) .scard-img { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal-mask > *,
+    .js-reveal .reveal-stagger .scard-img {
+        transform: none;
+        transition: none;
+    }
+}
+
 .js-reveal .reveal.is-visible,
 .js-reveal .reveal-stagger.is-visible > * {
     opacity: 1;
@@ -1064,9 +1251,12 @@ ul { list-style: none; }
     .nav-toggle { display: flex; }
     .nav-actions .btn { display: none; }
 
-    .stagger-cards { grid-template-columns: repeat(2, 1fr); }
-    .scard:nth-child(2) { margin-top: 2rem; }
-    .scard:nth-child(3) { margin-top: 0; }
+    .statement-body { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .statement-head { max-width: 100%; }
+
+    .products-meta { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .products-blurb { max-width: 100%; }
+    .products-pills { flex-wrap: wrap; }
 
     .catalog-top { grid-template-columns: 1fr; gap: 1.75rem; }
     .catalog-row { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
@@ -1108,8 +1298,7 @@ ul { list-style: none; }
 
     .icard { flex-basis: 78%; }
 
-    .stagger-cards { grid-template-columns: 1fr; }
-    .scard:nth-child(n) { margin-top: 0; }
+    .scard-row { grid-template-columns: 1fr; gap: 2rem; }
     .catalog-row { grid-template-columns: 1fr 1fr; }
     .commitments { grid-template-columns: 1fr; }
 

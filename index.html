@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <script>document.documentElement.classList.add('js-reveal');</script>
+    <script>document.documentElement.classList.add('js-reveal', 'hero-anim');</script>
 </head>
 <body class="home" id="top">
 
@@ -80,21 +80,30 @@
             <div class="hero-slides">
                 <div class="hero-slide active" data-slide="0">
                     <span class="eyebrow light">SUSTAINABLE WOOD SOLUTIONS</span>
-                    <h1 class="hero-title">Wood for a<br>Greener Tomorrow</h1>
+                    <h1 class="hero-title">
+                        <span class="line"><span>Wood for a</span></span>
+                        <span class="line"><span>Greener Tomorrow</span></span>
+                    </h1>
                     <p class="hero-sub">Quality wood products. Reliable supply.<br>A more sustainable future.</p>
                     <a href="about.html" class="btn btn-line btn-arrow">Learn More <span>→</span></a>
                 </div>
 
                 <div class="hero-slide" data-slide="1">
                     <span class="eyebrow light">ADVANCED MANUFACTURING</span>
-                    <h1 class="hero-title">Precision Crafted.<br>Built to Last.</h1>
+                    <h1 class="hero-title">
+                        <span class="line"><span>Precision Crafted.</span></span>
+                        <span class="line"><span>Built to Last.</span></span>
+                    </h1>
                     <p class="hero-sub">From wood pellets and biofuels to plywood<br>and sawn timber &mdash; engineered for industry.</p>
                     <a href="products.html" class="btn btn-line btn-arrow">Explore Products <span>→</span></a>
                 </div>
 
                 <div class="hero-slide" data-slide="2">
                     <span class="eyebrow light">TRUSTED PARTNERSHIPS</span>
-                    <h1 class="hero-title">From Malaysia<br>To the World.</h1>
+                    <h1 class="hero-title">
+                        <span class="line"><span>From Malaysia</span></span>
+                        <span class="line"><span>To the World.</span></span>
+                    </h1>
                     <p class="hero-sub">Reliable supply and lasting relationships<br>across industrial, commercial and export markets.</p>
                     <a href="contact.html" class="btn btn-line btn-arrow">Partner With Us <span>→</span></a>
                 </div>
@@ -118,22 +127,36 @@
     <!-- ============== STATEMENT + STAGGERED CARDS ============== -->
     <section class="statement-section">
         <div class="container">
-            <span class="kicker reveal">Product services</span>
-            <h2 class="display-lg reveal">From hardwoods to biomass, timber products for every industry.</h2>
+            <div class="reveal-mask">
+                <h2 class="statement-head">Good timber takes decades to grow. We plan on the same timescale.</h2>
+            </div>
 
-            <div class="stagger-cards reveal-stagger">
-                <a href="products.html" class="scard">
-                    <span class="scard-media" style="background-image: url('images/hero.webp');" aria-hidden="true"></span>
-                    <span class="scard-label">Milling <span>01</span></span>
-                </a>
-                <a href="products.html" class="scard">
-                    <span class="scard-media" style="background-image: url('images/ManuHero.webp');" aria-hidden="true"></span>
-                    <span class="scard-label">Processing <span>02</span></span>
-                </a>
-                <a href="products.html" class="scard">
-                    <span class="scard-media" style="background-image: url('images/PartnerHero.webp');" aria-hidden="true"></span>
-                    <span class="scard-label">Supply <span>03</span></span>
-                </a>
+            <div class="statement-body">
+                <span class="kicker reveal">What we stand for</span>
+
+                <div class="scard-row reveal-stagger">
+                    <a href="about.html" class="scard">
+                        <span class="scard-media"><span class="scard-img" style="background-image: url('images/hero.webp');"></span></span>
+                        <span class="scard-foot">
+                            <span class="scard-name">Vision</span>
+                        </span>
+                        <span class="scard-text">A sustainable future built on responsible wood solutions.</span>
+                    </a>
+                    <a href="about.html" class="scard">
+                        <span class="scard-media"><span class="scard-img" style="background-image: url('images/ManuHero.webp');"></span></span>
+                        <span class="scard-foot">
+                            <span class="scard-name">Mission</span>
+                        </span>
+                        <span class="scard-text">To deliver quality timber with integrity, consistency and care.</span>
+                    </a>
+                    <a href="about.html" class="scard">
+                        <span class="scard-media"><span class="scard-img" style="background-image: url('images/PartnerHero.webp');"></span></span>
+                        <span class="scard-foot">
+                            <span class="scard-name">Objective</span>
+                        </span>
+                        <span class="scard-text">To supply industrial, commercial and export markets, reliably.</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -141,7 +164,32 @@
     <!-- ============== BIG TITLE + FULL-BLEED MEDIA ============== -->
     <section class="bigtitle-section">
         <div class="container">
-            <h2 class="display-xl reveal">Our Products</h2>
+            <h2 class="display-xl letter-pop reveal-letters" aria-label="Our Products">
+                <span aria-hidden="true"><span style="--i:0">O</span><span style="--i:1">u</span><span style="--i:2">r</span></span>
+                <span aria-hidden="true"><span style="--i:3">P</span><span style="--i:4">r</span><span style="--i:5">o</span><span style="--i:6">d</span><span style="--i:7">u</span><span style="--i:8">c</span><span style="--i:9">t</span><span style="--i:10">s</span></span>
+            </h2>
+
+            <div class="products-meta reveal">
+                <p class="products-blurb">Plywood for construction, sawn timber for furniture, pellets for energy — all from one mill.</p>
+
+                <div class="pill-row products-pills">
+                    <span class="meta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M3 12h18"/>
+                            <path d="M12 3a14 14 0 010 18 14 14 0 010-18z"/>
+                        </svg>
+                    </span>
+                    <span class="pill pill-dark">Sustainability</span>
+                    <span class="pill pill-dark">Reliability</span>
+                    <span class="pill pill-dark">Quality Assurance</span>
+                    <a href="products.html" class="meta-arrow" aria-label="View all products">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="9 7 17 7 17 15"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="fullbleed-media" aria-hidden="true"></div>
     </section>

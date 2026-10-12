@@ -30,6 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const bgs = document.querySelectorAll('.hero-bg');
     const hero = document.querySelector('.hero');
 
+    // Entrance is set in <head> to avoid a flash; drop it once it has played so
+    // slide changes don't replay it.
+    if (document.documentElement.classList.contains('hero-anim')) {
+        setTimeout(() => document.documentElement.classList.remove('hero-anim'), 2400);
+    }
+
     if (reduceMotion) {
         document.querySelectorAll('.hero-video').forEach(v => {
             v.removeAttribute('autoplay');
@@ -137,13 +143,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ---------- Scroll Reveal ---------- */
-    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-mask, .reveal-letters');
 
     if (revealEls.length) {
         // Stripping the classes once the animation ends hands each element
         // back its own CSS, so hover transitions aren't left overridden.
         const clear = (el) => el.classList.remove(
-            'reveal', 'reveal-stagger', 'reveal-left', 'reveal-right', 'is-visible'
+            'reveal', 'reveal-stagger', 'reveal-mask', 'reveal-letters',
+            'reveal-left', 'reveal-right', 'is-visible'
         );
 
         if (reduceMotion || !('IntersectionObserver' in window)) {
