@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "biomassia",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-I",
+        "/Users/afadhli/Desktop/Biomassia/Biomassia-Website/.claude/serve.py"
+      ],
+      "port": 8765
+    }
+  ]
+}
