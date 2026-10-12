@@ -7,11 +7,11 @@
     <meta name="description" content="Biomassia Sdn. Bhd. is a Malaysian wood products manufacturer delivering quality wood pallets, sawn timber, and wood pellets through responsible, sustainable manufacturing.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script>document.documentElement.classList.add('js-reveal');</script>
 </head>
-<body class="home">
+<body class="home" id="top">
 
     <!-- ============== NAVIGATION (STICKY) ============== -->
     <header class="site-header" id="siteHeader">
@@ -100,6 +100,13 @@
                 </div>
             </div>
 
+            <div class="pill-row hero-tags">
+                <span class="pill">Sustainability</span>
+                <span class="pill">Quality Assurance</span>
+                <span class="pill">Reliability</span>
+                <span class="pill">Est. 2019</span>
+            </div>
+
             <div class="hero-dots" role="tablist" aria-label="Hero slides">
                 <button class="dot active" role="tab" aria-selected="true" aria-label="Slide 1: Sustainable Wood Solutions" data-slide="0"></button>
                 <button class="dot" role="tab" aria-selected="false" aria-label="Slide 2: Advanced Manufacturing" data-slide="1"></button>
@@ -108,295 +115,136 @@
         </div>
     </section>
 
-    <!-- ============== VISION / MISSION / VALUES ============== -->
-    <section class="vmv-section">
+    <!-- ============== STATEMENT + STAGGERED CARDS ============== -->
+    <section class="statement-section">
         <div class="container">
-            <div class="vmv-head reveal">
-                <span class="eyebrow eyebrow-dot">ABOUT BIOMASSIA</span>
-                <h2>Quality Wood Products, Manufactured Responsibly. <span>From plywood and sawn timber to renewable wood pellets, produced at our integrated mill in Gua Musang, Kelantan.</span></h2>
+            <span class="kicker reveal">Product services</span>
+            <h2 class="display-lg reveal">From hardwoods to biomass, timber products for every industry.</h2>
+
+            <div class="stagger-cards reveal-stagger">
+                <a href="products.html" class="scard">
+                    <span class="scard-media" style="background-image: url('images/hero.webp');" aria-hidden="true"></span>
+                    <span class="scard-label">Milling <span>01</span></span>
+                </a>
+                <a href="products.html" class="scard">
+                    <span class="scard-media" style="background-image: url('images/ManuHero.webp');" aria-hidden="true"></span>
+                    <span class="scard-label">Processing <span>02</span></span>
+                </a>
+                <a href="products.html" class="scard">
+                    <span class="scard-media" style="background-image: url('images/PartnerHero.webp');" aria-hidden="true"></span>
+                    <span class="scard-label">Supply <span>03</span></span>
+                </a>
             </div>
+        </div>
+    </section>
 
-            <div class="vmv-body">
-                <div class="vmv-visual reveal reveal-left">
-                    <div class="vmv-photo" aria-hidden="true"></div>
-                    <div class="vmv-callout">
-                        <h4>One Integrated Site</h4>
-                        <p>Sawmilling, kiln drying and pelletising coordinated under one roof.</p>
-                    </div>
-                </div>
+    <!-- ============== BIG TITLE + FULL-BLEED MEDIA ============== -->
+    <section class="bigtitle-section">
+        <div class="container">
+            <h2 class="display-xl reveal">Our Products</h2>
+        </div>
+        <div class="fullbleed-media" aria-hidden="true"></div>
+    </section>
 
-                <div class="vmv-content reveal reveal-right">
-                    <div class="vmv-block">
-                        <h3>Our Mission</h3>
-                        <p>To deliver quality wood products with integrity and innovation, supporting our clients with reliable supply and consistent standards.</p>
-                    </div>
-
-                    <div class="vmv-block">
-                        <h3>Our Vision</h3>
-                        <p>A sustainable future through responsible wood solutions, preserving natural resources for the generations that follow.</p>
-                    </div>
-
-                    <ul class="vmv-checks">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                            Quality in every batch
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                            Responsibility in how we source
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                            People at the centre of our work
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-                            Sustainability built into the process
-                        </li>
+    <!-- ============== CATALOG ============== -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-top">
+                <div class="cat-list reveal reveal-left">
+                    <h4>Product categories</h4>
+                    <ul>
+                        <li>Plywood</li>
+                        <li>Sawn Timber</li>
+                        <li>Wood Pellets</li>
+                        <li>Biofuels</li>
                     </ul>
-
-                    <a href="about.html" class="btn btn-primary btn-arrow">More About Us <span>→</span></a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============== PRODUCTS ============== -->
-    <section class="products-section">
-        <div class="container">
-            <div class="products-head reveal">
-                <span class="eyebrow">OUR PRODUCTS</span>
-                <h2>Quality Wood Products<br>for Various Industries</h2>
-                <p>We manufacture and supply a range of wood products to meet industrial, commercial and packaging needs.</p>
+                <p class="cat-mission reveal reveal-right">Our mission is to deliver quality wood products with integrity and innovation. We manufacture plywood, sawn timber and renewable wood pellets at our integrated mill in Gua Musang, Kelantan, supporting industrial, commercial and export markets with reliable supply and consistent standards.</p>
             </div>
 
-            <div class="product-grid reveal-stagger">
-                <a href="products.html" class="pcard pcard-plywood">
-                    <span class="pcard-media" aria-hidden="true"></span>
-                    <span class="pcard-label">Plywood</span>
+            <div class="catalog-row reveal-stagger">
+                <a href="products.html" class="ccard">
+                    <span class="ccard-media" style="background-image: url('images/plywood.webp');" aria-hidden="true"></span>
+                    <span class="ccard-name">Plywood</span>
                 </a>
-
-                <a href="products.html" class="pcard pcard-timber">
-                    <span class="pcard-media" aria-hidden="true"></span>
-                    <span class="pcard-label">Sawn Timber</span>
+                <a href="products.html" class="ccard">
+                    <span class="ccard-media" style="background-image: url('images/timber.webp');" aria-hidden="true"></span>
+                    <span class="ccard-name">Sawn Timber</span>
                 </a>
-
-                <a href="products.html" class="pcard pcard-pellets">
-                    <span class="pcard-media" aria-hidden="true"></span>
-                    <span class="pcard-label">Wood Pellets</span>
+                <a href="products.html" class="ccard">
+                    <span class="ccard-media" style="background-image: url('images/pellets.webp');" aria-hidden="true"></span>
+                    <span class="ccard-name">Wood Pellets</span>
                 </a>
-
-                <a href="products.html" class="pcard pcard-tint">
-                    <span class="pcard-media" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/>
-                            <path d="M12 14v8"/>
-                        </svg>
-                    </span>
-                    <span class="pcard-label">Biofuels</span>
+                <a href="products.html" class="ccard">
+                    <span class="ccard-media" style="background-image: url('images/WoodHero-poster.jpg');" aria-hidden="true"></span>
+                    <span class="ccard-name">Biofuels</span>
                 </a>
-
-                <a href="products.html" class="pcard pcard-tint">
-                    <span class="pcard-media" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3 3 7.5l9 4.5 9-4.5L12 3z"/>
-                            <path d="M3 12l9 4.5 9-4.5"/>
-                            <path d="M3 16.5l9 4.5 9-4.5"/>
-                        </svg>
-                    </span>
-                    <span class="pcard-label">Timber By-Products</span>
-                </a>
-
-                <a href="products.html" class="pcard pcard-cta">
-                    <svg class="pcard-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="6" y1="18" x2="18" y2="6"/>
-                        <polyline points="9 6 18 6 18 15"/>
+                <a href="products.html" class="big-link">
+                    Explore products
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="6" y1="18" x2="18" y2="6"/><polyline points="9 6 18 6 18 15"/>
                     </svg>
-                    <span class="pcard-media" aria-hidden="true"></span>
-                    <span class="pcard-label">View all products</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ============== ABOUT ============== -->
-    <section class="about-section">
-        <div class="about-grid">
-            <div class="about-image reveal reveal-left">
-                <div class="about-image-bg" aria-hidden="true"></div>
-                <div class="about-image-overlay"></div>
-                <div class="about-script">
-                    <span>Trees.</span>
-                    <span>People.</span>
-                    <span>A Better Tomorrow</span>
-                </div>
-            </div>
-
-            <div class="about-content reveal reveal-right">
-                <span class="eyebrow">ABOUT BIOMASSIA</span>
-                <h2>Building a Sustainable Future</h2>
-                <p>Biomassia Sdn. Bhd. is a Malaysian wood products manufacturer located in Gua Musang, Kelantan. We are committed to providing high-quality plywood, sawn timber and wood pellets through efficient manufacturing processes and responsible resource management.</p>
-                <a href="about.html" class="btn btn-primary btn-arrow">Learn More About Us <span>→</span></a>
-
-                <div class="about-pillars">
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Our Vision</h4>
-                            <p>A sustainable future through responsible wood solutions.</p>
-                        </div>
-                    </div>
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <circle cx="12" cy="12" r="6"/>
-                                <circle cx="12" cy="12" r="2" fill="#2d6a3e"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Our Mission</h4>
-                            <p>To deliver quality wood products with integrity and innovation.</p>
-                        </div>
-                    </div>
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Our Values</h4>
-                            <p>Quality | Responsibility<br>People | Sustainability</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============== SUSTAINABILITY ============== -->
-    <section class="sustain-section">
-        <div class="sustain-bg" aria-hidden="true"></div>
-        <div class="sustain-overlay"></div>
-        <div class="container sustain-inner">
-            <div class="sustain-text reveal reveal-left">
-                <span class="eyebrow light">OUR COMMITMENT</span>
-                <h2>Sustainability for a Brighter Tomorrow</h2>
-                <p>We believe in responsible sourcing, efficient production and sustainable practices to preserve natural resources for future generations.</p>
-                <a href="about.html" class="btn btn-outline-light btn-arrow">Our Sustainability <span>→</span></a>
-            </div>
-
-            <div class="sustain-pillars reveal-stagger">
-                <div class="sustain-item">
-                    <div class="sustain-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.75">
-                            <path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/>
-                            <path d="M12 14v6"/>
-                        </svg>
-                    </div>
-                    <h4>Responsible<br>Sourcing</h4>
-                </div>
-                <div class="sustain-item">
-                    <div class="sustain-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.75">
-                            <path d="M3 12a9 9 0 019-9c3 0 6 1.5 7.5 4"/>
-                            <polyline points="20 3 20 8 15 8"/>
-                            <path d="M21 12a9 9 0 01-9 9c-3 0-6-1.5-7.5-4"/>
-                            <polyline points="4 21 4 16 9 16"/>
-                        </svg>
-                    </div>
-                    <h4>Efficient<br>Processing</h4>
-                </div>
-                <div class="sustain-item">
-                    <div class="sustain-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.75">
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>
-                            <circle cx="17" cy="7" r="3"/>
-                            <path d="M21 21v-2a4 4 0 00-3-3.87"/>
-                        </svg>
-                    </div>
-                    <h4>Reduced<br>Environmental Impact</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============== STATS ============== -->
-    <section class="stats-section">
+    <!-- ============== MISSION BAND ============== -->
+    <section class="mission-section">
         <div class="container">
-            <div class="stats-grid reveal-stagger">
-                <div class="stat">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="1.75">
-                            <path d="M3 21V9l6-4 6 4v12"/>
-                            <path d="M15 21V11l6-4v14"/>
-                            <path d="M3 21h18"/>
-                            <rect x="6" y="13" width="2" height="2"/>
-                            <rect x="10" y="13" width="2" height="2"/>
-                        </svg>
-                    </div>
-                    <div class="stat-number">2019</div>
-                    <div class="stat-label">Established</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="1.75">
-                            <circle cx="9" cy="8" r="3"/>
-                            <circle cx="17" cy="9" r="2.5"/>
-                            <path d="M3 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>
-                            <path d="M15 20v-2a4 4 0 00-1-2.5"/>
-                            <path d="M21 20v-1.5a3 3 0 00-2.5-3"/>
-                        </svg>
-                    </div>
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Clients</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="1.75">
-                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
-                    <div class="stat-number">High-Quality</div>
-                    <div class="stat-label">Products</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a3e" stroke-width="1.75">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="2" y1="12" x2="22" y2="12"/>
-                            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                        </svg>
-                    </div>
-                    <div class="stat-number">Malaysia</div>
-                    <div class="stat-label">Based in Gua Musang, Kelantan</div>
-                </div>
-            </div>
+            <span class="kicker light reveal">About Biomassia</span>
+            <h2 class="display-lg reveal">Our journey began with a simple mission:</h2>
+            <p class="mission-copy reveal">To produce quality timber while preserving the forests it comes from. Since 2019 we have built an integrated site in Gua Musang where sawmilling, kiln drying and pelletising run under one roof — so offcuts and sawdust become product rather than waste.</p>
+
+            <ul class="commitments reveal-stagger">
+                <li>Produce premium quality timber</li>
+                <li>Source responsibly</li>
+                <li>Support local communities</li>
+                <li>Innovate with sustainable practices</li>
+            </ul>
         </div>
     </section>
 
-    <!-- ============== CTA (WORK WITH US) ============== -->
-    <section class="cta-section">
-        <div class="cta-bg" aria-hidden="true"></div>
-        <div class="cta-overlay"></div>
-        <div class="container cta-inner">
-            <div class="cta-text reveal reveal-left">
-                <span class="eyebrow light">WORK WITH US</span>
-                <h2>Let's Build a Greener<br>Future Together</h2>
-                <p>Looking for reliable wood products or a long-term partner?<br>Get in touch with us today.</p>
+    <!-- ============== INSIDE BIOMASSIA ============== -->
+    <section class="industry-section">
+        <div class="container">
+            <div class="industry-head reveal">
+                <h2>Inside Biomassia</h2>
+                <p>From plantation to pellet line — how our timber is grown, milled and supplied.</p>
             </div>
-            <div class="cta-actions reveal reveal-right">
-                <a href="contact.html" class="btn btn-primary btn-arrow">Request a Quotation <span>→</span></a>
-                <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
+
+            <div class="industry-track reveal-stagger" id="industryTrack">
+                <a href="about.html" class="icard" style="background-image: url('images/plantationview.jpg');">
+                    <span class="icard-label">Forestry</span>
+                </a>
+                <a href="products.html" class="icard" style="background-image: url('images/timber.webp');">
+                    <span class="icard-label">Sawmilling</span>
+                </a>
+                <a href="products.html" class="icard" style="background-image: url('images/plywood.webp');">
+                    <span class="icard-label">Panel Production</span>
+                </a>
+                <a href="products.html" class="icard" style="background-image: url('images/pellets.webp');">
+                    <span class="icard-label">Pelletising</span>
+                </a>
+                <a href="about.html" class="icard" style="background-image: url('images/ManuHero.webp');">
+                    <span class="icard-label">Our Facility</span>
+                </a>
+                <a href="contact.html" class="icard" style="background-image: url('images/PartnerHero.webp');">
+                    <span class="icard-label">Partnerships</span>
+                </a>
+            </div>
+
+            <div class="industry-nav">
+                <button class="inav-btn" id="indPrev" aria-label="Previous" aria-controls="industryTrack">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <button class="inav-btn" id="indNext" aria-label="Next" aria-controls="industryTrack">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -404,6 +252,11 @@
     <!-- ============== FOOTER ============== -->
     <footer class="site-footer">
         <div class="container">
+            <div class="footer-display">
+                <span class="display-xl">Biomassia</span>
+                <a href="#top" class="scroll-top">Scroll to top ↑</a>
+            </div>
+
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="brand">
@@ -475,6 +328,12 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="pill-row footer-pills">
+                <span class="pill">Sustainability</span>
+                <span class="pill">Quality Assurance</span>
+                <span class="pill">Reliability</span>
             </div>
 
             <div class="footer-bottom">

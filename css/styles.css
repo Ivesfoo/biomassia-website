@@ -74,6 +74,78 @@ ul { list-style: none; }
 }
 .eyebrow.light { color: rgba(255, 255, 255, 0.95); }
 
+/* ---------- Editorial display type ---------- */
+.display-xl {
+    font-size: clamp(2rem, 5.4vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+.display-lg {
+    font-size: clamp(1.6rem, 3.4vw, 2.9rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+}
+.kicker {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+}
+.kicker.light { color: rgba(255, 255, 255, 0.65); }
+
+/* ---------- Outlined pill tags ---------- */
+.pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+}
+.pill-dark {
+    border-color: rgba(26, 77, 46, 0.3);
+    color: var(--green-dark);
+}
+
+/* ---------- Oversized text link ---------- */
+.big-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    line-height: 1.1;
+}
+.big-link svg {
+    width: 0.9em;
+    height: 0.9em;
+    transition: transform var(--t);
+}
+.big-link:hover { color: var(--green-mid); }
+.big-link:hover svg { transform: translate(5px, -5px); }
+
 /* ---------- Buttons (Premium) ---------- */
 .btn {
     position: relative;
@@ -465,10 +537,14 @@ ul { list-style: none; }
 
 .hero-title {
     color: #fff;
-    font-weight: 700;
+    font-size: clamp(2.1rem, 5.6vw, 4.6rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
     margin: 0.5rem 0 1.25rem;
-    letter-spacing: -0.5px;
 }
+.hero-tags { margin-top: 2rem; }
 .hero-sub {
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.9);
@@ -495,120 +571,6 @@ ul { list-style: none; }
 }
 .hero-dots .dot:hover { background: rgba(255, 255, 255, 0.7); }
 .hero-dots .dot.active { background: #fff; width: 32px; }
-
-/* ================================================================
-   VISION / MISSION / VALUES
-   ================================================================ */
-.vmv-section {
-    padding: 4.5rem 0 4.5rem;
-    background: #fff;
-    overflow: hidden; /* contains the reveal-right transform before it settles */
-}
-.vmv-head {
-    max-width: 860px;
-    margin: 0 auto 3rem;
-    text-align: center;
-}
-.eyebrow-dot::before {
-    content: '';
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--green-mid);
-    margin-right: 0.55rem;
-    vertical-align: middle;
-}
-.vmv-head h2 {
-    font-size: clamp(1.1rem, 1.9vw, 1.5rem);
-    line-height: 1.45;
-}
-/* Second clause carries the same size but drops back in weight and colour */
-.vmv-head h2 span {
-    font-weight: 500;
-    color: var(--text-light);
-}
-
-.vmv-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-    align-items: center;
-}
-
-.vmv-visual { position: relative; }
-.vmv-photo {
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-    background-image: url('../images/PartnerHero.webp');
-    /* Source is a 3:1 panorama; `cover` in a 4:3 frame shows its full height,
-       leaving the subjects small and the floor under the callout. Zooming past
-       cover crops the dead floor and brings the group up. */
-    background-size: auto 138%;
-    background-position: 47% 20%;
-    background-repeat: no-repeat;
-}
-.vmv-callout {
-    position: absolute;
-    left: 1.5rem;
-    bottom: 1.5rem;
-    width: 62%;
-    background: #fff;
-    border-radius: 12px;
-    padding: 1.1rem 1.3rem;
-    box-shadow: var(--shadow-md);
-}
-.vmv-callout h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    margin-bottom: 0.35rem;
-}
-.vmv-callout p {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    line-height: 1.55;
-    margin: 0;
-}
-
-.vmv-block {
-    border-left: 3px solid var(--green-mid);
-    padding-left: 1.25rem;
-    margin-bottom: 1.75rem;
-}
-.vmv-block h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-}
-.vmv-block p {
-    font-size: 0.92rem;
-    color: var(--text-light);
-    line-height: 1.65;
-    margin: 0;
-}
-
-.vmv-checks {
-    display: grid;
-    gap: 0.85rem;
-    margin: 1.75rem 0 2rem;
-}
-.vmv-checks li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: var(--text-mid);
-}
-.vmv-checks svg {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    color: var(--green-mid);
-}
 
 /* ================================================================
    INDUSTRY PRESENCE (horizontal carousel)
@@ -728,374 +690,6 @@ ul { list-style: none; }
 }
 
 /* ================================================================
-   PRODUCTS
-   ================================================================ */
-.products-section {
-    padding: 4rem 0 5rem;
-    background: #fff;
-}
-.products-head {
-    max-width: 620px;
-    margin-bottom: 2.75rem;
-}
-.products-head h2 { margin-bottom: 1rem; }
-.products-head p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-}
-.pcard {
-    display: flex;
-    flex-direction: column;
-    min-height: 310px;
-    background: var(--bg-cream);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    text-decoration: none;
-    transition: transform var(--t), box-shadow var(--t);
-}
-.pcard:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
-.pcard-media {
-    flex: 1;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.pcard-label {
-    padding: 1.15rem 1.35rem;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.pcard-plywood .pcard-media { background-image: url('../images/plywood.webp'); }
-.pcard-timber  .pcard-media { background-image: url('../images/timber.webp'); }
-.pcard-pellets .pcard-media { background-image: url('../images/pellets.webp'); }
-
-/* Awaiting photography — flat tint reads as deliberate beside the photo tiles */
-.pcard-tint { background: var(--green-pale); }
-.pcard-tint .pcard-media {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--green-mid);
-    opacity: 0.7;
-}
-.pcard-tint .pcard-media svg { width: 54px; height: 54px; }
-
-.pcard-cta {
-    position: relative;
-    background: var(--green-mid);
-}
-.pcard-cta .pcard-label { color: #fff; }
-.pcard-cta .pcard-arrow {
-    position: absolute;
-    top: 1.35rem;
-    right: 1.35rem;
-    width: 30px;
-    height: 30px;
-    color: #fff;
-    transition: transform var(--t);
-}
-.pcard-cta:hover { background: var(--green-dark); }
-.pcard-cta:hover .pcard-arrow { transform: translate(4px, -4px); }
-
-/* ================================================================
-   ABOUT
-   ================================================================ */
-.about-section {
-    background: var(--bg-white);
-    overflow: hidden;
-}
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    min-height: 480px;
-}
-.about-image {
-    position: relative;
-    overflow: hidden;
-    min-height: 440px;
-}
-.about-image-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('../images/plantationview.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.about-image-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(180deg, rgba(10, 30, 15, 0) 40%, rgba(10, 30, 15, 0.65) 100%),
-        linear-gradient(135deg, rgba(10, 30, 15, 0.15) 0%, transparent 50%);
-}
-.about-script {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    z-index: 2;
-    font-family: var(--font-script);
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-.about-script span {
-    font-size: clamp(1.6rem, 3vw, 2.3rem);
-    font-weight: 600;
-    line-height: 1.1;
-}
-
-.about-content {
-    position: relative;
-    padding: 4rem 3rem 4rem 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    isolation: isolate;
-}
-.about-content::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -80px;
-    width: 520px;
-    height: 620px;
-    transform: translateY(-50%);
-    background-image: url('../images/leaf-decor.svg');
-    background-size: contain;
-    background-position: center right;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: -1;
-}
-.about-content h2 { margin-bottom: 1.25rem; }
-.about-content > p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 1.75rem;
-    max-width: 540px;
-}
-.about-content .btn { align-self: flex-start; }
-
-.about-pillars {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-    max-width: 540px;
-}
-.pillar {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-}
-.pillar-icon {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-.pillar-icon svg { width: 100%; height: 100%; }
-.pillar h4 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-.pillar p {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* ================================================================
-   SUSTAINABILITY
-   ================================================================ */
-.sustain-section {
-    position: relative;
-    padding: 5rem 0;
-    color: #fff;
-    overflow: hidden;
-}
-.sustain-bg {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(135deg, #1a3a20 0%, #2d5a3a 45%, #1f4a2a 100%);
-}
-.sustain-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at 50% 70%, rgba(100, 180, 110, 0.3) 0%, transparent 55%),
-        repeating-linear-gradient(45deg,
-            rgba(30, 70, 40, 0.3) 0 20px,
-            rgba(20, 50, 28, 0.4) 20px 60px);
-    opacity: 0.9;
-}
-.sustain-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(10, 30, 15, 0.65) 0%, rgba(10, 30, 15, 0.3) 100%);
-}
-.sustain-inner {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-.sustain-text h2 { color: #fff; margin-bottom: 1rem; }
-.sustain-text p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1.75rem;
-    max-width: 560px;
-    font-size: 0.98rem;
-    line-height: 1.6;
-}
-.sustain-pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    text-align: center;
-}
-.sustain-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-}
-.sustain-icon {
-    width: 48px;
-    height: 48px;
-}
-.sustain-icon svg { width: 100%; height: 100%; }
-.sustain-item h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.25;
-}
-
-/* ================================================================
-   STATS
-   ================================================================ */
-.stats-section {
-    padding: 3rem 0;
-    background: var(--bg-cream);
-}
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-.stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-    position: relative;
-}
-.stat:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 20%;
-    bottom: 20%;
-    width: 1px;
-    background: var(--border);
-}
-.stat-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.75rem;
-}
-.stat-icon svg { width: 100%; height: 100%; }
-.stat-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--green-dark);
-    line-height: 1;
-    margin-bottom: 0.35rem;
-}
-.stat-label {
-    font-size: 0.85rem;
-    color: var(--text-light);
-}
-
-/* ================================================================
-   CTA (WORK WITH US)
-   ================================================================ */
-.cta-section {
-    position: relative;
-    padding: 4rem 0;
-    color: #fff;
-    overflow: hidden;
-}
-.cta-bg {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(135deg, #3d2817 0%, #5a3a20 50%, #4a2f1c 100%);
-}
-.cta-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 15% 50%, #8b5e35 0%, transparent 25%),
-        radial-gradient(circle at 50% 50%, #a07040 0%, transparent 22%),
-        radial-gradient(circle at 85% 50%, #6d4a28 0%, transparent 23%),
-        radial-gradient(circle at 30% 30%, #7a4f30 0%, transparent 20%),
-        radial-gradient(circle at 70% 70%, #946640 0%, transparent 21%);
-    background-size: 180px 180px, 160px 160px, 170px 170px, 150px 150px, 155px 155px;
-}
-.cta-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(10, 15, 10, 0.72) 0%, rgba(10, 15, 10, 0.5) 100%);
-}
-.cta-inner {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-.cta-text h2 { color: #fff; margin-bottom: 0.75rem; }
-.cta-text p {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-.cta-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
-}
-.cta-actions .btn { justify-content: center; }
-
-/* ================================================================
    FOOTER
    ================================================================ */
 .site-footer {
@@ -1209,6 +803,187 @@ ul { list-style: none; }
 }
 
 /* ================================================================
+   STATEMENT + STAGGERED CARDS
+   ================================================================ */
+.statement-section { padding: 5.5rem 0 4rem; background: #fff; }
+.statement-section .display-lg { max-width: 15ch; margin-bottom: 3.5rem; }
+
+.stagger-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+.scard { display: block; text-decoration: none; }
+/* Offsets are what make the row read as composed rather than gridded */
+.scard:nth-child(2) { margin-top: 3.5rem; }
+.scard:nth-child(3) { margin-top: 1.5rem; }
+.scard-media {
+    display: block;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--t);
+}
+.scard:hover .scard-media { transform: translateY(-6px); }
+.scard-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+}
+.scard-label span { color: var(--text-light); font-weight: 500; }
+
+/* ================================================================
+   BIG TITLE + FULL-BLEED MEDIA
+   ================================================================ */
+.bigtitle-section { padding: 3rem 0 0; background: #fff; overflow: hidden; }
+.bigtitle-section .display-xl {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--green-dark);
+}
+.fullbleed-media {
+    height: clamp(260px, 42vw, 520px);
+    /* plantationview is sky-heavy; this one fills a short wide band */
+    background-image: url('../images/PartnerHero-poster.jpg');
+    background-size: cover;
+    background-position: center 55%;
+}
+
+/* ================================================================
+   CATALOG (categories + mission + cards + oversized link)
+   ================================================================ */
+.catalog-section { padding: 4rem 0 5rem; background: #fff; }
+.catalog-top {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+.cat-list h4 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.9rem;
+}
+.cat-list li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.cat-list li:last-child { border-bottom: none; }
+.cat-mission {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 60ch;
+}
+
+.catalog-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+}
+.ccard { display: block; text-decoration: none; }
+.ccard-media {
+    display: block;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--t);
+}
+.ccard:hover .ccard-media { transform: translateY(-5px); }
+.ccard-name {
+    display: block;
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+}
+.catalog-row .big-link { margin-left: 1.5rem; }
+
+/* ================================================================
+   MISSION BAND (dark)
+   ================================================================ */
+.mission-section {
+    padding: 5.5rem 0 3rem;
+    background: var(--green-dark);
+    color: #fff;
+}
+.mission-section .display-lg {
+    color: #fff;
+    max-width: 18ch;
+    margin-bottom: 1.75rem;
+}
+.mission-copy {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 58ch;
+    margin-bottom: 4rem;
+}
+.commitments {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.commitments li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+.commitments li::before { content: '•'; color: var(--green-light); }
+
+/* ================================================================
+   FOOTER DISPLAY BAND (home only)
+   ================================================================ */
+.footer-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.footer-display .display-xl { color: #fff; }
+.scroll-top {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 0.6rem;
+}
+.scroll-top:hover { color: #fff; }
+.footer-pills { margin-bottom: 1.75rem; }
+.footer-pills .pill { border-color: rgba(255, 255, 255, 0.28); color: rgba(255, 255, 255, 0.82); }
+
+/* ================================================================
    SCROLL REVEAL
    Base state applies only when .js-reveal is on <html>, so the page
    stays fully visible if JavaScript never runs.
@@ -1224,6 +999,11 @@ ul { list-style: none; }
 
 .js-reveal .reveal-left  { transform: translateX(-30px); }
 .js-reveal .reveal-right { transform: translateX(30px); }
+
+/* A reveal-right element sits 30px past its container until it settles, which
+   adds horizontal page scroll. `clip` contains it without creating a scroll
+   container, so sticky/fixed positioning still works. */
+.js-reveal section { overflow-x: clip; }
 
 .js-reveal .reveal.is-visible,
 .js-reveal .reveal-stagger.is-visible > * {
@@ -1284,9 +1064,17 @@ ul { list-style: none; }
     .nav-toggle { display: flex; }
     .nav-actions .btn { display: none; }
 
-    .vmv-body { grid-template-columns: 1fr; gap: 2.5rem; }
-    /* 62% is too narrow for the copy once the photo is single-column */
-    .vmv-callout { width: auto; right: 1.5rem; }
+    .stagger-cards { grid-template-columns: repeat(2, 1fr); }
+    .scard:nth-child(2) { margin-top: 2rem; }
+    .scard:nth-child(3) { margin-top: 0; }
+
+    .catalog-top { grid-template-columns: 1fr; gap: 1.75rem; }
+    .catalog-row { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .catalog-row .big-link { grid-column: 1 / -1; margin: 0.75rem 0 0; }
+
+    .commitments { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+    .footer-display { flex-direction: column; gap: 1rem; }
 
     .industry-head { flex-direction: column; gap: 0.9rem; }
     .industry-head p { padding-top: 0; max-width: 100%; }
@@ -1319,6 +1107,11 @@ ul { list-style: none; }
     .hero-inner { padding: 3rem 1.5rem; }
 
     .icard { flex-basis: 78%; }
+
+    .stagger-cards { grid-template-columns: 1fr; }
+    .scard:nth-child(n) { margin-top: 0; }
+    .catalog-row { grid-template-columns: 1fr 1fr; }
+    .commitments { grid-template-columns: 1fr; }
 
     .product-grid { grid-template-columns: 1fr; }
 
