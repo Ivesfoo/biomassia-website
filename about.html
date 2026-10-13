@@ -6,8 +6,9 @@
     <title>About Us — Biomassia Sdn. Bhd.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script>document.documentElement.classList.add('js-reveal', 'hero-anim');</script>
 </head>
 <body id="top">
 
@@ -39,7 +40,6 @@
                         <circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path>
                     </svg>
                 </button>
-                <a href="contact.html" class="btn btn-primary">Request a Quotation</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Open menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -47,11 +47,174 @@
         </div>
     </header>
 
-    <section class="placeholder-hero">
+    <!-- ============== ABOUT HERO ============== -->
+    <section class="about-hero">
+        <div class="about-hero-bg" aria-hidden="true"></div>
+        <div class="about-hero-overlay" aria-hidden="true"></div>
+
+        <div class="container about-hero-inner">
+            <h1 class="about-hero-title">
+                <span class="line"><span>About Us</span></span>
+            </h1>
+        </div>
+
+        <svg class="about-curve" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,240 C380,232 760,78 1440,0 L1440,240 Z"/>
+        </svg>
+    </section>
+
+    <!-- ============== MISSION & VALUES ============== -->
+    <section class="about-mission">
         <div class="container">
-            <span class="eyebrow light">ABOUT BIOMASSIA</span>
-            <h1>About Us</h1>
-            <p>This page is coming soon. The content and layout will be developed in the next step.</p>
+            <span class="kicker light reveal">Mission &amp; Values</span>
+            <div class="reveal-mask">
+                <h2 class="about-mission-title">Quality timber, grown and milled responsibly</h2>
+            </div>
+            <p class="about-mission-sub reveal">The commitments that shape how we work — from the plantation to the loading bay.</p>
+        </div>
+    </section>
+
+    <!-- ============== VALUES ============== -->
+    <section class="about-values">
+        <div class="container about-values-grid">
+            <div class="value-cards reveal-stagger">
+                <article class="vcard">
+                    <h3>Quality in every batch</h3>
+                    <p>Every shipment is milled to spec and checked before it leaves the site. Consistency is what keeps clients ordering again, so we measure it rather than assume it.</p>
+                </article>
+                <article class="vcard">
+                    <h3>Responsibility in how we source</h3>
+                    <p>We replant what we harvest and keep our concession areas productive. The forest is the business, not a resource to be spent down.</p>
+                </article>
+                <article class="vcard">
+                    <h3>People at the centre of our work</h3>
+                    <p>Our team lives in Gua Musang. The mill supports families here, and we invest in training so those jobs stay worth keeping.</p>
+                </article>
+            </div>
+
+            <div class="value-media reveal reveal-right" aria-hidden="true"></div>
+        </div>
+    </section>
+
+    <!-- ============== OUR STORY ============== -->
+    <section class="story-section">
+        <div class="container story-grid">
+            <div class="story-media reveal reveal-left" aria-hidden="true"></div>
+
+            <div class="story-copy reveal reveal-right">
+                <span class="kicker">Our Story</span>
+                <h2 class="story-title">From one mill in Gua Musang</h2>
+                <p>Biomassia Sdn. Bhd. was founded in 2019 in Gua Musang, Kelantan, to mill Malaysian timber properly and supply it to buyers who need it to be right every time.</p>
+                <p>What started as a sawmill became an integrated site. Plywood, sawn timber and wood pellets are now produced on the same ground, so the offcuts from one process feed the next instead of leaving as waste.</p>
+                <p>Today we supply industrial, commercial and export markets — milling to spec, drying to a consistent moisture content, and loading containers from our own yard.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== OUR STRENGTHS ============== -->
+    <section class="strengths-section">
+        <div class="strengths-bg" aria-hidden="true"></div>
+        <div class="strengths-overlay" aria-hidden="true"></div>
+
+        <div class="container strengths-inner">
+            <div class="strengths-intro reveal">
+                <span class="kicker light">Why choose Biomassia</span>
+                <h2 class="strengths-title">Our Strengths</h2>
+                <p>We combine industry experience, reliable operations and a strong commitment to sustainability to deliver value to our customers and partners.</p>
+            </div>
+
+            <div class="strengths-list reveal-pop">
+                <div class="strength">
+                    <svg class="strength-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 28V15l8 4v-4l8 4 8-4v13z"/><path d="M4 28h24"/>
+                        <line x1="10" y1="22" x2="10" y2="24"/><line x1="16" y1="22" x2="16" y2="24"/><line x1="22" y1="22" x2="22" y2="24"/>
+                    </svg>
+                    <span class="strength-value">2019</span>
+                    <span class="strength-label">Established</span>
+                </div>
+
+                <div class="strength">
+                    <svg class="strength-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="16" cy="10" r="4"/><circle cx="7" cy="13" r="3"/><circle cx="25" cy="13" r="3"/>
+                        <path d="M9 26v-2a7 7 0 0114 0v2"/><path d="M2 25v-1a5 5 0 015-5"/><path d="M30 25v-1a5 5 0 00-5-5"/>
+                    </svg>
+                    <span class="strength-value">100+</span>
+                    <span class="strength-label">Clients</span>
+                </div>
+
+                <div class="strength">
+                    <svg class="strength-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M16 3 7 8l9 5 9-5-9-5z"/><path d="M7 8v10l9 5 9-5V8"/><path d="M16 13v10"/>
+                    </svg>
+                    <span class="strength-value">High-Quality</span>
+                    <span class="strength-label">Products</span>
+                </div>
+
+                <div class="strength">
+                    <svg class="strength-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M16 29c0-9 2-15 9-20-1 10-4 16-9 20z"/><path d="M16 29c0-9-2-15-9-20 1 10 4 16 9 20z"/>
+                    </svg>
+                    <span class="strength-value">Sustainable</span>
+                    <span class="strength-label">Operations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== CERTIFICATIONS ==============
+         Placeholder cards. Fill in only certifications Biomassia actually
+         holds — a false certification claim is a regulatory risk in export
+         markets, not just a copy error. -->
+    <section class="certs-section">
+        <div class="container">
+            <div class="certs-head reveal">
+                <span class="kicker">Certifications</span>
+                <h2 class="certs-title">Documented, verifiable, export-ready</h2>
+                <p>Every shipment leaves with the paperwork its destination requires. Our certifications are listed here so buyers can verify them directly with the issuing body.</p>
+            </div>
+
+            <div class="certs-grid reveal-pop">
+                <article class="cert is-placeholder">
+                    <span class="cert-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-2.5L17 22l-1.5-8"/></svg>
+                    </span>
+                    <h3>Certification name</h3>
+                    <p class="cert-scope">What it covers</p>
+                    <dl class="cert-meta">
+                        <div><dt>Issuing body</dt><dd>&mdash;</dd></div>
+                        <div><dt>Certificate no.</dt><dd>&mdash;</dd></div>
+                        <div><dt>Valid until</dt><dd>&mdash;</dd></div>
+                    </dl>
+                </article>
+
+                <article class="cert is-placeholder">
+                    <span class="cert-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-2.5L17 22l-1.5-8"/></svg>
+                    </span>
+                    <h3>Certification name</h3>
+                    <p class="cert-scope">What it covers</p>
+                    <dl class="cert-meta">
+                        <div><dt>Issuing body</dt><dd>&mdash;</dd></div>
+                        <div><dt>Certificate no.</dt><dd>&mdash;</dd></div>
+                        <div><dt>Valid until</dt><dd>&mdash;</dd></div>
+                    </dl>
+                </article>
+
+                <article class="cert is-placeholder">
+                    <span class="cert-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-2.5L17 22l-1.5-8"/></svg>
+                    </span>
+                    <h3>Certification name</h3>
+                    <p class="cert-scope">What it covers</p>
+                    <dl class="cert-meta">
+                        <div><dt>Issuing body</dt><dd>&mdash;</dd></div>
+                        <div><dt>Certificate no.</dt><dd>&mdash;</dd></div>
+                        <div><dt>Valid until</dt><dd>&mdash;</dd></div>
+                    </dl>
+                </article>
+            </div>
+
+            <p class="certs-note reveal">Placeholder &mdash; replace with certifications Biomassia currently holds.</p>
         </div>
     </section>
 

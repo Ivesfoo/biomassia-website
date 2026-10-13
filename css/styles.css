@@ -548,12 +548,14 @@ ul { list-style: none; }
 
 /* Each headline line sits in its own mask so it can slide up from behind it.
    The padding/margin pair stops the mask clipping descenders. */
+.about-hero-title .line,
 .hero-title .line {
     display: block;
     overflow: hidden;
     padding-bottom: 0.06em;
     margin-bottom: -0.06em;
 }
+.about-hero-title .line > span,
 .hero-title .line > span { display: block; }
 
 /* ---------- Hero entrance (on load) ----------
@@ -589,6 +591,14 @@ ul { list-style: none; }
     .hero-anim .hero-tags .pill:nth-child(3) { animation-delay: 0.90s; }
     .hero-anim .hero-tags .pill:nth-child(4) { animation-delay: 0.98s; }
     .hero-anim .hero-dots { animation: heroFadeUp 0.6s ease-out 1.06s backwards; }
+
+    /* Same entrance on the About hero, so both pages open the same way */
+    .hero-anim .about-hero-title .line > span {
+        animation: heroLineUp 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s backwards;
+    }
+    .hero-anim .about-hero-bg {
+        animation: heroMediaIn 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    }
 }
 .hero-sub {
     font-size: 1.05rem;
@@ -708,6 +718,328 @@ ul { list-style: none; }
 }
 .footer-legal a { color: rgba(255, 255, 255, 0.55); font-size: 0.82rem; }
 .footer-legal a:hover { color: #fff; }
+
+/* ================================================================
+   ABOUT PAGE
+   ================================================================ */
+.about-hero {
+    position: relative;
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+}
+.about-hero-bg,
+.about-hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+.about-hero-bg {
+    background-image: url('../images/AboutHero.webp');
+    background-size: cover;
+    background-position: center;
+}
+.about-hero-overlay {
+    background: linear-gradient(90deg,
+        rgba(10, 25, 15, 0.78) 0%,
+        rgba(10, 25, 15, 0.5) 45%,
+        rgba(10, 25, 15, 0.2) 100%);
+}
+.about-hero-inner {
+    position: relative;
+    z-index: 2;
+    padding-top: 7rem;
+    padding-bottom: 9rem;
+}
+.about-hero-title {
+    color: #fff;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+/* The sweep that carries the hero into the mission band below */
+.about-curve {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 3;
+    width: 100%;
+    height: clamp(90px, 14vw, 210px);
+    display: block;
+}
+.about-curve path { fill: var(--green-dark); }
+
+.about-mission {
+    padding: 0.5rem 0 3.75rem;
+    background: var(--green-dark);
+    color: #fff;
+    text-align: center;
+}
+.about-mission .kicker { margin-bottom: 0.9rem; }
+.about-mission-title {
+    max-width: 20ch;
+    margin: 0 auto 1rem;
+    color: #fff;
+    font-size: clamp(1.6rem, 3.3vw, 2.45rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+}
+.about-mission-sub {
+    max-width: 52ch;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.about-values {
+    padding: 0 0 5.5rem;
+    background: var(--green-dark);
+}
+.about-values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+/* Cards sit above the photo and run over its left edge */
+.value-cards {
+    position: relative;
+    z-index: 2;
+    margin-right: -22%;
+    display: grid;
+    gap: 1.25rem;
+}
+.vcard {
+    background: rgba(8, 20, 12, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem 1.6rem;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+.vcard h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+}
+.vcard p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.value-media {
+    min-height: 560px;
+    border-radius: 16px;
+    background-image: url('../images/PartnerHero.webp');
+    background-size: cover;
+    background-position: 60% center;
+}
+
+/* ---------- Our Story ---------- */
+.story-section {
+    padding: 5rem 0;
+    background: #fff;
+    overflow: hidden;
+}
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+.story-media {
+    min-height: 460px;
+    border-radius: 18px;
+    background-image: url('../images/ManuHero.webp');
+    background-size: cover;
+    background-position: center;
+}
+.story-copy .kicker { margin-bottom: 0.9rem; }
+.story-title {
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+.story-copy p {
+    margin-bottom: 1rem;
+    font-size: 0.97rem;
+    line-height: 1.75;
+}
+.story-copy p:last-child { margin-bottom: 0; }
+
+/* ---------- Certifications ---------- */
+.certs-section {
+    padding: 5rem 0;
+    background: var(--bg-cream);
+}
+.certs-head {
+    max-width: 58ch;
+    margin-bottom: 2.75rem;
+}
+.certs-head .kicker { margin-bottom: 0.9rem; }
+.certs-title {
+    margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+.certs-head p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.cert {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem 1.6rem;
+}
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 1.1rem;
+    border-radius: 50%;
+    background: var(--green-pale);
+    color: var(--green-mid);
+}
+.cert-badge svg { width: 24px; height: 24px; }
+.cert h3 {
+    font-size: 1.08rem;
+    margin-bottom: 0.3rem;
+}
+.cert-scope {
+    margin: 0 0 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+.cert-meta {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+}
+.cert-meta > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.84rem;
+}
+.cert-meta dt { color: var(--text-light); }
+.cert-meta dd { margin: 0; font-weight: 600; color: var(--text-dark); }
+
+/* Unfilled cards read as obviously unfinished, so they can't ship by accident */
+.cert.is-placeholder {
+    border-style: dashed;
+    border-color: rgba(26, 77, 46, 0.3);
+}
+.cert.is-placeholder h3,
+.cert.is-placeholder .cert-scope { color: var(--text-light); }
+
+.certs-note {
+    margin: 1.5rem 0 0;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* ---------- Our Strengths band ---------- */
+.strengths-section {
+    position: relative;
+    padding: 3.5rem 0;
+    overflow: hidden;
+    color: #fff;
+}
+.strengths-bg,
+.strengths-overlay {
+    position: absolute;
+    inset: 0;
+}
+.strengths-bg {
+    background-image: url('../images/PartnerHero-poster.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.strengths-overlay { background: rgba(14, 32, 20, 0.84); }
+
+.strengths-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+}
+.strengths-intro .kicker { margin-bottom: 0.75rem; }
+/* The rule trailing the heading, as in the reference */
+.strengths-title {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    color: #fff;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    margin-bottom: 1rem;
+}
+.strengths-title::after {
+    content: '';
+    flex: 0 0 44px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+}
+.strengths-intro p {
+    margin: 0;
+    max-width: 44ch;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.strengths-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.strength {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.strength-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.3rem;
+    color: #fff;
+}
+.strength-value {
+    font-size: 1.22rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+}
+.strength-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.72);
+}
 
 /* ================================================================
    PLACEHOLDER PAGE HERO (for pages not yet developed)
@@ -1429,6 +1761,23 @@ ul { list-style: none; }
     }
 }
 
+/* Pop variant: children arrive one by one, overshooting slightly as they land. */
+.js-reveal .reveal-pop > * {
+    opacity: 0;
+    transform: translateY(18px) scale(0.88);
+    transition:
+        opacity 0.5s ease-out,
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.js-reveal .reveal-pop.is-visible > * { opacity: 1; transform: none; }
+.js-reveal .reveal-pop.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.js-reveal .reveal-pop.is-visible > *:nth-child(3) { transition-delay: 0.24s; }
+.js-reveal .reveal-pop.is-visible > *:nth-child(4) { transition-delay: 0.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal-pop > * { opacity: 1; transform: none; transition: none; }
+}
+
 /* Mask variant: the child slides up from behind a clipped edge. */
 .js-reveal .reveal-mask { overflow: hidden; }
 .js-reveal .reveal-mask > * {
@@ -1534,6 +1883,18 @@ ul { list-style: none; }
     .mission-grid { grid-template-columns: 1fr; gap: 2.25rem; }
 
     .footer-display { flex-direction: column; gap: 1rem; }
+
+    .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .story-media { min-height: 300px; }
+    .certs-grid { grid-template-columns: 1fr; }
+
+    .strengths-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .strengths-list { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 0; }
+    .strength:nth-child(odd) { border-left: none; }
+
+    .about-values-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .value-cards { margin-right: 0; }
+    .value-media { min-height: 340px; }
 
     .gallery-head { flex-direction: column; gap: 0.9rem; }
     .gallery-intro { padding-top: 0; max-width: 100%; }

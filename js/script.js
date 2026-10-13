@@ -215,13 +215,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ---------- Scroll Reveal ---------- */
-    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-mask, .reveal-letters, .reveal-cards');
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-mask, .reveal-letters, .reveal-cards, .reveal-pop');
 
     if (revealEls.length) {
         // Stripping the classes once the animation ends hands each element
         // back its own CSS, so hover transitions aren't left overridden.
         const clear = (el) => el.classList.remove(
-            'reveal', 'reveal-stagger', 'reveal-mask', 'reveal-letters', 'reveal-cards',
+            'reveal', 'reveal-stagger', 'reveal-mask', 'reveal-letters', 'reveal-cards', 'reveal-pop',
             'reveal-left', 'reveal-right', 'is-visible'
         );
 
