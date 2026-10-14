@@ -252,6 +252,23 @@ ul { list-style: none; }
 
 /* Crisp outline on dark imagery — fills white on hover.
    No backdrop-filter: it is costly to composite over playing video. */
+/* Light-background twin of .btn-line: outline that fills on hover. */
+.btn-outline {
+    background: transparent;
+    color: var(--green-dark);
+    border-color: rgba(26, 77, 46, 0.45);
+    box-shadow: none;
+}
+.btn-outline::before { opacity: 0; }
+.btn-outline:hover {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+.btn-outline:active { transform: translateY(0); }
+
 .btn-line {
     background: transparent;
     color: #fff;
@@ -773,11 +790,20 @@ ul { list-style: none; }
 }
 /* One shared photo, so the four heroes are identical. Temporary — each page
    can take its own again by splitting this back into four rules. */
-.page-hero--about .page-hero-bg,
-.page-hero--products .page-hero-bg,
-.page-hero--gallery .page-hero-bg,
+.page-hero--about .page-hero-bg {
+    background-image: url('../images/HeroUs.jpg');
+}
+/* Contact takes its own shot of the pellet plant. */
 .page-hero--contact .page-hero-bg {
-    background-image: url('../images/team-hero.jpg');
+    background-image: url('../images/HeroContact.jpg');
+}
+/* Gallery takes its own shot of the mill floor. */
+.page-hero--gallery .page-hero-bg {
+    background-image: url('../images/HeroGallery.jpg');
+}
+/* Products takes its own shot of the yard. */
+.page-hero--products .page-hero-bg {
+    background-image: url('../images/HeroProduct.jpg');
 }
 /* Flat, not left-weighted: the old ramp existed to carry a left-aligned
    title, and with the title centred it just bleached the left edge. */
@@ -948,7 +974,8 @@ ul { list-style: none; }
     display: grid;
     grid-template-columns: 1fr 1.05fr;
     gap: 3.5rem;
-    align-items: start;
+    /* stretch, so the form's card reaches the same bottom edge as the map */
+    align-items: stretch;
 }
 
 .contact-aside .kicker { margin-bottom: 0.7rem; }
@@ -1027,7 +1054,11 @@ ul { list-style: none; }
 }
 
 /* ---- form card ---- */
+/* The aside runs taller than the form, so the form stretches to match and
+   the slack goes into the message box rather than leaving the card part empty. */
 .cform {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
     background: var(--bg-white);
     border: 1px solid var(--border);
@@ -1063,6 +1094,12 @@ ul { list-style: none; }
     min-height: 130px;
     resize: vertical;
 }
+.cfield:has(textarea) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.cfield:has(textarea) textarea { flex: 1; }
 .cfield input::placeholder,
 .cfield textarea::placeholder { color: var(--text-light); }
 
@@ -1833,10 +1870,17 @@ ul { list-style: none; }
     .scard-overlay .scard-name { display: block; margin-bottom: 0.45rem; }
     .scard-overlay .scard-text { margin-top: 0; }
 
-    .scard-below { transition: opacity 0.3s ease; }
+    /* Coming back, wait for the overlay to clear the image before fading in,
+       so the two copies are never both on screen at once. */
+    .scard-below { transition: opacity 0.18s ease 0.2s; }
 
     .scard:hover .scard-overlay { transform: translateY(0); }
-    .scard:hover .scard-below { opacity: 0; }
+    .scard:hover .scard-below {
+        /* Going out, leave immediately rather than cross-fading with the
+           overlay as it slides up — that overlap showed the line twice. */
+        transition: opacity 0.12s ease;
+        opacity: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2124,7 +2168,13 @@ ul { list-style: none; }
    ================================================================ */
 .mission-section {
     padding: 3.25rem 0 2.75rem;
-    background: var(--green-dark);
+    /* Photo behind a heavy green veil. 0.88 is about the limit: .mstat-desc
+       is only 70% white, so letting more image through drops it under AA. */
+    background-image:
+        linear-gradient(rgba(26, 77, 46, 0.88), rgba(26, 77, 46, 0.88)),
+        url('../images/MissionBg.jpg');
+    background-size: cover;
+    background-position: center;
     color: #fff;
 }
 .mission-head {
