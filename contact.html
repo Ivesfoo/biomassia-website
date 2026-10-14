@@ -6,8 +6,9 @@
     <title>Contact Us — Biomassia Sdn. Bhd.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script>document.documentElement.classList.add('js-reveal', 'hero-anim');</script>
 </head>
 <body id="top">
 
@@ -46,11 +47,138 @@
         </div>
     </header>
 
-    <section class="placeholder-hero">
+    <section class="page-hero page-hero--contact">
+        <div class="page-hero-bg" aria-hidden="true"></div>
+        <div class="page-hero-overlay" aria-hidden="true"></div>
+
+        <div class="container page-hero-inner">
+            <h1 class="page-hero-title">
+                <span class="line"><span>Contact Us</span></span>
+            </h1>
+        </div>
+
+        <svg class="page-curve" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,240 C380,232 760,78 1440,0 L1440,240 Z"/>
+        </svg>
+    </section>
+
+
+    <!-- ============== GET IN TOUCH ============== -->
+    <section class="page-intro page-intro--next-cream">
         <div class="container">
-            <span class="eyebrow light">CONTACT US</span>
-            <h1>Contact Us</h1>
-            <p>This page is coming soon. The content and layout will be developed in the next step.</p>
+            <span class="kicker light reveal">Get in touch</span>
+            <div class="reveal-mask">
+                <h2 class="page-intro-title">We're ready when you are</h2>
+            </div>
+            <p class="page-intro-sub reveal">Our office and mill sit on the same site in Gua Musang, Kelantan.</p>
+        </div>
+
+        <svg class="page-sweep" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,48 C520,120 940,222 1440,240 L1440,240 L0,240 Z"/>
+        </svg>
+    </section>
+
+    <!-- ============== CONTACT ============== -->
+    <section class="contact-section">
+        <div class="container contact-grid">
+
+            <div class="contact-aside reveal reveal-left">
+                <span class="kicker">Contact Us</span>
+                <h2 class="contact-title">Tell us what you need</h2>
+                <p class="contact-lead">Whether it is a quotation, a question about specification, or a request to visit the mill — send us a message and our team will come back to you.</p>
+
+                <h3 class="contact-subhead">Other info</h3>
+                <ul class="cinfo">
+                    <li>
+                        <span class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 6 9-6"/></svg></span>
+                        <span class="cinfo-text">
+                            <span class="cinfo-label">Email us at</span>
+                            <a href="mailto:info@biomassia.com">info@biomassia.com</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A17 17 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5z"/></svg></span>
+                        <span class="cinfo-text">
+                            <span class="cinfo-label">Call us on</span>
+                            <a href="tel:+6099131987">+60 9-913 1987</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+                        <span class="cinfo-text">
+                            <span class="cinfo-label">Visit us at</span>
+                            Lot 5488-5490, Kawasan Perindustrian,<br>18300 Gua Musang, Kelantan, Malaysia
+                        </span>
+                    </li>
+                    <li>
+                        <span class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+                        <span class="cinfo-text">
+                            <span class="cinfo-label">Opening hours</span>
+                            Sunday &ndash; Thursday, 9.00am &ndash; 6.00pm
+                        </span>
+                    </li>
+                </ul>
+
+                <div class="contact-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Lot%205488-5490%2C%20Kawasan%20Perindustrian%2C%2018300%20Gua%20Musang%2C%20Kelantan%2C%20Malaysia&amp;z=14&amp;output=embed"
+                        title="Map showing Biomassia Sdn. Bhd. in Gua Musang, Kelantan"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <form class="cform reveal reveal-right" id="contactForm">
+                <div class="cfield">
+                    <label for="cfName">Full Name</label>
+                    <input type="text" id="cfName" name="name" placeholder="Your full name" required>
+                </div>
+
+                <div class="cfield">
+                    <label for="cfEmail">Email Address</label>
+                    <input type="email" id="cfEmail" name="email" placeholder="you@company.com" required>
+                </div>
+
+                <div class="cfield">
+                    <label for="cfCompany">Company <span class="cfield-opt">(optional)</span></label>
+                    <input type="text" id="cfCompany" name="company" placeholder="Your company name">
+                </div>
+
+                <div class="cfield">
+                    <label for="cfTopic">What is your enquiry about?</label>
+                    <select id="cfTopic" name="topic">
+                            <option>General enquiry</option>
+                            <option>Plywood</option>
+                            <option>Sawn Timber</option>
+                            <option>Wood Pellets</option>
+                            <option>Biofuels</option>
+                    </select>
+                </div>
+
+                <div class="cfield">
+                    <label for="cfMessage">Message</label>
+                    <textarea id="cfMessage" name="message" rows="5" placeholder="Tell us about the volumes, grades and timing you need..." required></textarea>
+                </div>
+
+                <button type="submit" class="cform-btn">Send Message</button>
+                <p class="cform-status" id="contactStatus" role="status"></p>
+            </form>
+
+        </div>
+    </section>
+
+
+    <!-- ============== FIND US HERE ============== -->
+    <section class="findus-section">
+        <div class="container findus-grid">
+            <div class="findus-body reveal reveal-left">
+                <span class="kicker">Visit our facility</span>
+                <h2 class="findus-title">Find Us Here</h2>
+                <p class="findus-lead">Our manufacturing site is strategically located in Gua Musang, Kelantan, providing convenient access for our customers, suppliers and business partners. We welcome visitors by appointment.</p>
+            </div>
+
+            <span class="findus-media reveal reveal-right" style="background-image: url('images/AboutHero.webp');" aria-hidden="true"></span>
         </div>
     </section>
 

@@ -146,6 +146,60 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('prodNext'),
         '.pitem'
     );
+    initCarousel(
+        document.getElementById('reviewTrack'),
+        document.getElementById('revPrev'),
+        document.getElementById('revNext'),
+        '.rcard'
+    );
+
+    /* ---------- Contact form ---------- */
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+
+    if (contactForm && contactStatus) {
+        // Nothing is wired up to receive this yet. Holding the submit keeps the
+        // browser from navigating away and dropping whatever was typed.
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!contactForm.reportValidity()) return;
+            contactStatus.textContent =
+                'This form is not connected yet — please email info@biomassia.com in the meantime.';
+        });
+    }
+
+    /* ---------- Gallery card photo cycle ---------- */
+    const eventCards = document.querySelectorAll('.gevent');
+
+    if (eventCards.length && !reduceMotion) {
+        const PHOTO_INTERVAL = 1400;
+
+        eventCards.forEach((card) => {
+            const photos = card.querySelectorAll('.gevent-photo');
+            if (photos.length < 2) return;
+
+            let index = 0;
+            let timer = null;
+
+            const show = (next) => {
+                photos[index].classList.remove('is-on');
+                index = (next + photos.length) % photos.length;
+                photos[index].classList.add('is-on');
+            };
+
+            card.addEventListener('mouseenter', () => {
+                if (timer) return;
+                timer = setInterval(() => show(index + 1), PHOTO_INTERVAL);
+            });
+
+            // Back to the first photo so every card rests on the same image
+            card.addEventListener('mouseleave', () => {
+                clearInterval(timer);
+                timer = null;
+                show(0);
+            });
+        });
+    }
 
     /* ---------- Stat count-up ---------- */
     const counters = document.querySelectorAll('[data-count]');

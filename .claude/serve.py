@@ -10,6 +10,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
+    def end_headers(self):
+        # no-cache, not no-store: the browser must revalidate every request, so
+        # edits always show, but unchanged files come back as a cheap 304 rather
+        # than being re-downloaded. Sending nothing at all lets Chrome cache
+        # heuristically and serve stale pages after an edit.
+        self.send_header("Cache-Control", "no-cache")
+        super().end_headers()
+
 
 handler = functools.partial(Handler, directory=ROOT)
 

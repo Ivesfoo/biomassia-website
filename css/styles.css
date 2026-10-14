@@ -7,6 +7,7 @@
 
 :root {
     --green-dark: #1a4d2e;
+    --green-band-top: #1f5634;
     --green-mid: #2d6a3e;
     --green-light: #4a8a5e;
     --green-pale: #e8f0ea;
@@ -548,14 +549,14 @@ ul { list-style: none; }
 
 /* Each headline line sits in its own mask so it can slide up from behind it.
    The padding/margin pair stops the mask clipping descenders. */
-.about-hero-title .line,
+.page-hero-title .line,
 .hero-title .line {
     display: block;
     overflow: hidden;
     padding-bottom: 0.06em;
     margin-bottom: -0.06em;
 }
-.about-hero-title .line > span,
+.page-hero-title .line > span,
 .hero-title .line > span { display: block; }
 
 /* ---------- Hero entrance (on load) ----------
@@ -593,10 +594,10 @@ ul { list-style: none; }
     .hero-anim .hero-dots { animation: heroFadeUp 0.6s ease-out 1.06s backwards; }
 
     /* Same entrance on the About hero, so both pages open the same way */
-    .hero-anim .about-hero-title .line > span {
+    .hero-anim .page-hero-title .line > span {
         animation: heroLineUp 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s backwards;
     }
-    .hero-anim .about-hero-bg {
+    .hero-anim .page-hero-bg {
         animation: heroMediaIn 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
     }
 }
@@ -722,7 +723,7 @@ ul { list-style: none; }
 /* ================================================================
    ABOUT PAGE
    ================================================================ */
-.about-hero {
+.page-hero {
     position: relative;
     min-height: 62vh;
     display: flex;
@@ -730,29 +731,33 @@ ul { list-style: none; }
     overflow: hidden;
     color: #fff;
 }
-.about-hero-bg,
-.about-hero-overlay {
+.page-hero-bg,
+.page-hero-overlay {
     position: absolute;
     inset: 0;
 }
-.about-hero-bg {
-    background-image: url('../images/AboutHero.webp');
+.page-hero-bg {
     background-size: cover;
     background-position: center;
 }
-.about-hero-overlay {
+/* Each page supplies its own hero image through a modifier */
+.page-hero--about .page-hero-bg { background-image: url('../images/AboutHero.webp'); }
+.page-hero--products .page-hero-bg { background-image: url('../images/hero.webp'); }
+.page-hero--gallery .page-hero-bg { background-image: url('../images/PartnerHero.webp'); }
+.page-hero--contact .page-hero-bg { background-image: url('../images/ManuHero.webp'); }
+.page-hero-overlay {
     background: linear-gradient(90deg,
         rgba(10, 25, 15, 0.78) 0%,
         rgba(10, 25, 15, 0.5) 45%,
         rgba(10, 25, 15, 0.2) 100%);
 }
-.about-hero-inner {
+.page-hero-inner {
     position: relative;
     z-index: 2;
     padding-top: 7rem;
     padding-bottom: 9rem;
 }
-.about-hero-title {
+.page-hero-title {
     color: #fff;
     font-size: clamp(2.4rem, 6vw, 4.4rem);
     font-weight: 800;
@@ -761,26 +766,26 @@ ul { list-style: none; }
 }
 
 /* The sweep that carries the hero into the mission band below */
-.about-curve {
+.page-curve {
     position: absolute;
     left: 0;
     right: 0;
     bottom: -1px;
     z-index: 3;
     width: 100%;
-    height: clamp(90px, 14vw, 210px);
+    height: clamp(70px, 9vw, 140px);
     display: block;
 }
-.about-curve path { fill: var(--green-dark); }
+.page-curve path { fill: var(--green-band-top); }
 
-.about-mission {
-    padding: 0.5rem 0 3.75rem;
-    background: var(--green-dark);
+.page-intro {
+    padding: 1.5rem 0 5rem;
+    background: linear-gradient(180deg, var(--green-band-top) 0%, var(--green-dark) 100%);
     color: #fff;
     text-align: center;
 }
-.about-mission .kicker { margin-bottom: 0.9rem; }
-.about-mission-title {
+.page-intro .kicker { margin-bottom: 0.9rem; }
+.page-intro-title {
     max-width: 20ch;
     margin: 0 auto 1rem;
     color: #fff;
@@ -789,7 +794,7 @@ ul { list-style: none; }
     line-height: 1.18;
     letter-spacing: -0.02em;
 }
-.about-mission-sub {
+.page-intro-sub {
     max-width: 52ch;
     margin: 0 auto;
     color: rgba(255, 255, 255, 0.72);
@@ -797,9 +802,34 @@ ul { list-style: none; }
     line-height: 1.7;
 }
 
+/* Mirror of the hero sweep, carrying the green band out into whatever section
+   follows. Each page sets --sweep-fill to that section's background, so the
+   join is a curve instead of a hard edge. */
+.page-intro { position: relative; }
+.page-intro > .container {
+    position: relative;
+    z-index: 1;
+}
+.page-sweep {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 0;
+    width: 100%;
+    height: clamp(70px, 9vw, 140px);
+    display: block;
+}
+.page-sweep path { fill: var(--sweep-fill, var(--bg-cream)); }
+
+.page-intro--next-cream { --sweep-fill: var(--bg-cream); }
+.page-intro--next-white { --sweep-fill: var(--bg-white); }
+
 .about-values {
-    padding: 0 0 5.5rem;
-    background: var(--green-dark);
+    /* top padding mirrors .prodlist-section so both pages pick up with the
+       same rhythm once the intro band's sweep has handed off */
+    padding: 2.25rem 0 5.5rem;
+    background: var(--bg-white);
 }
 .about-values-grid {
     display: grid;
@@ -815,21 +845,23 @@ ul { list-style: none; }
     gap: 1.25rem;
 }
 .vcard {
-    background: rgba(8, 20, 12, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* still floats over the photo's left edge, so it stays near-opaque */
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.5rem 1.6rem;
+    box-shadow: var(--shadow-md);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 .vcard h3 {
-    color: #fff;
+    color: var(--green-dark);
     font-size: 1.1rem;
     margin-bottom: 0.6rem;
 }
 .vcard p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.68);
+    color: var(--text-mid);
     font-size: 0.9rem;
     line-height: 1.65;
 }
@@ -842,38 +874,615 @@ ul { list-style: none; }
     background-position: 60% center;
 }
 
-/* ---------- Our Story ---------- */
-.story-section {
-    padding: 5rem 0;
-    background: #fff;
+/* ---------- Contact ---------- */
+.contact-section {
+    padding: 2.25rem 0 5.5rem;
+    background: var(--bg-cream);
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 3.5rem;
+    align-items: start;
+}
+
+.contact-aside .kicker { margin-bottom: 0.7rem; }
+.contact-title {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+}
+.contact-lead {
+    max-width: 44ch;
+    margin-bottom: 2.5rem;
+    color: var(--text-mid);
+    font-size: 0.97rem;
+    line-height: 1.75;
+}
+.contact-subhead {
+    margin-bottom: 1.25rem;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.cinfo {
+    display: grid;
+    gap: 1.4rem;
+    list-style: none;
+}
+.cinfo li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.cinfo-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+}
+.cinfo-icon svg { width: 20px; height: 20px; }
+.cinfo-text {
+    display: block;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.cinfo-label {
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--text-light);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.cinfo-text a { color: var(--text-dark); }
+.cinfo-text a:hover { color: var(--green-mid); }
+
+.contact-map {
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
     overflow: hidden;
+}
+.contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+}
+
+/* ---- form card ---- */
+.cform {
+    padding: 2rem;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+}
+.cfield { margin-bottom: 1.15rem; }
+.cfield label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--text-dark);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+.cfield-opt {
+    color: var(--text-light);
+    font-weight: 400;
+}
+.cfield input,
+.cfield select,
+.cfield textarea {
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    background: var(--bg-cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 0.93rem;
+    transition: border-color var(--t), box-shadow var(--t);
+}
+.cfield textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+.cfield input::placeholder,
+.cfield textarea::placeholder { color: var(--text-light); }
+
+.cfield input:focus,
+.cfield select:focus,
+.cfield textarea:focus {
+    outline: none;
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 3px rgba(74, 138, 94, 0.16);
+}
+
+/* Native arrow swapped for one that follows the palette */
+.cfield select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 2.4rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a4d2e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 16px;
+}
+
+.cform-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    background: var(--green-dark);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--t), transform var(--t);
+}
+.cform-btn:hover {
+    background: var(--green-mid);
+    transform: translateY(-1px);
+}
+
+.cform-status {
+    margin: 0.9rem 0 0;
+    min-height: 1.2em;
+    color: var(--text-mid);
+    font-size: 0.86rem;
+    text-align: center;
+}
+
+/* ---------- Find us here ---------- */
+.findus-section {
+    padding: 3.25rem 0 3.75rem;
+    background: var(--bg-white);
+}
+.findus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+    align-items: center;
+}
+.findus-section .kicker { margin-bottom: 0.6rem; }
+/* Trailing rule, matching the product row headings */
+.findus-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    letter-spacing: -0.015em;
+}
+.findus-title::after {
+    content: '';
+    flex: 0 0 38px;
+    height: 2px;
+    background: var(--green-mid);
+}
+.findus-lead {
+    margin-bottom: 0;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+.findus-media {
+    display: block;
+    /* landscape, so the image sits closer to the text column's height
+       instead of driving the section's height on its own */
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ---------- Gallery grid ---------- */
+.gevents-section {
+    padding: 2.25rem 0 5rem;
+    background: var(--bg-cream);
+}
+.gevents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+.gevent {
+    display: flex;
+    flex-direction: column;
+    background: var(--green-pale);
+    border-radius: 18px;
+    padding: 0.85rem 0.85rem 1.4rem;
+    transition: transform var(--t), box-shadow var(--t);
+}
+.gevent:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.gevent-media {
+    position: relative;
+    display: block;
+    /* the date tab hangs past the bottom edge, so this must not clip */
+    overflow: visible;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+}
+/* Photos stack; only .is-on is opaque, so swapping the class cross-fades them */
+.gevent-photo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+.gevent-photo.is-on { opacity: 1; }
+/* Date tab hangs off the bottom of the photo, as in the reference */
+.gevent-date {
+    position: absolute;
+    z-index: 2;
+    right: 14px;
+    bottom: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 58px;
+    padding: 0.5rem 0.6rem 0.55rem;
+    background: var(--bg-white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    line-height: 1.1;
+}
+.gevent-date strong {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.gevent-date span {
+    color: var(--text-light);
+    font-size: 0.78rem;
+}
+
+.gevent-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 2.1rem 0.75rem 0.4rem;
+}
+.gevent-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(26, 77, 46, 0.14);
+    color: var(--text-light);
+    font-size: 0.86rem;
+}
+.gevent-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.gevent-meta svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.gevent-title {
+    margin: 1rem 0 0;
+    color: var(--text-dark);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+.gevents-note {
+    margin-top: 2.5rem;
+    color: var(--text-light);
+    font-size: 0.82rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ---------- Product list rows ---------- */
+.prodlist-section {
+    /* the intro band's sweep already carries the cream down to here */
+    padding: 2.25rem 0 5rem;
+    background: var(--bg-cream);
+}
+.prow {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+.prow:last-child { margin-bottom: 0; }
+
+.prow-media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+}
+
+.prow-body .kicker { margin-bottom: 0.5rem; }
+/* Short rule trailing the product name, as in the reference */
+.prow-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    letter-spacing: -0.015em;
+}
+.prow-title::after {
+    content: '';
+    flex: 0 0 38px;
+    height: 2px;
+    background: var(--green-mid);
+}
+.prow-desc {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.7;
+}
+
+.prow-feats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin: 1.4rem 0 1.6rem;
+}
+.pfeat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 0.5rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-align: center;
+}
+.pfeat svg {
+    width: 22px;
+    height: 22px;
+    color: var(--green-mid);
+}
+.pfeat span {
+    font-size: 0.68rem;
+    line-height: 1.3;
+    color: var(--text-mid);
+}
+
+.prow-btn { padding: 0.75rem 1.4rem; font-size: 0.85rem; }
+
+/* ---------- Reviews ---------- */
+.reviews-section {
+    padding: 4.5rem 0 5rem;
+    background: #fff;
+}
+.reviews-head {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2.5rem;
+    align-items: end;
+    margin-bottom: 2.5rem;
+}
+.reviews-title {
+    margin: 0;
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+}
+/* Sits inline on the heading's first line, as in the reference */
+.reviews-label {
+    margin-right: 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--text-light);
+    vertical-align: middle;
+}
+.reviews-intro {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+}
+
+.reviews-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0.25rem;
+}
+.reviews-track::-webkit-scrollbar { display: none; }
+
+.rcard {
+    flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem 1.5rem;
+    background: var(--bg-cream);
+    border: 1px solid transparent;
+    border-radius: 14px;
+    transition: background var(--t), border-color var(--t);
+}
+.rcard:hover {
+    background: #fff;
+    border-color: var(--border);
+}
+
+.rstars {
+    display: flex;
+    gap: 0.15rem;
+    margin-bottom: 1.1rem;
+    color: #9aab7e;
+}
+.rstars svg { width: 17px; height: 17px; }
+
+.rquote {
+    margin: 0 0 1.75rem;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+}
+
+.rwho {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+.ravatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    font-weight: 700;
+}
+.rwho-text { display: flex; flex-direction: column; line-height: 1.35; }
+.rwho-text strong { font-size: 0.92rem; color: var(--text-dark); }
+.rwho-text em {
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.reviews-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+}
+.rev-btn {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: background var(--t), color var(--t), border-color var(--t), opacity var(--t);
+}
+.rev-btn svg { width: 18px; height: 18px; }
+.rev-btn:hover:not(:disabled) { border-color: var(--green-mid); color: var(--green-mid); }
+.rev-btn-solid {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+}
+.rev-btn-solid:hover:not(:disabled) {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+    color: #fff;
+}
+.rev-btn:disabled { opacity: 0.35; cursor: default; }
+
+.reviews-note {
+    margin: 1rem 0 0;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* ---------- Our Story (editorial, image left / title right) ---------- */
+.story-section {
+    padding: 5rem 0 5.5rem;
+    background: var(--bg-cream);
+    overflow: hidden;
+}
+.story-rule-top {
+    height: 2px;
+    background: var(--text-dark);
+    margin-bottom: 1.75rem;
 }
 .story-grid {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 3.5rem;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
 }
-.story-media {
-    min-height: 460px;
-    border-radius: 18px;
+
+/* Dropped down so the photo sits alongside the oversized heading */
+.story-figure {
+    position: relative;
+    margin: 4.5rem 0 0;
+}
+.story-photo {
+    display: block;
+    aspect-ratio: 1.1 / 1;
     background-image: url('../images/ManuHero.webp');
     background-size: cover;
     background-position: center;
 }
-.story-copy .kicker { margin-bottom: 0.9rem; }
-.story-title {
-    margin-bottom: 1.25rem;
-    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-    line-height: 1.2;
-    letter-spacing: -0.015em;
+.story-figure figcaption {
+    position: absolute;
+    right: 0.85rem;
+    bottom: 0.7rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
 }
-.story-copy p {
+
+.story-display {
+    font-size: clamp(3rem, 8.5vw, 6.4rem);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--text-dark);
+}
+.story-rule {
+    height: 2px;
+    background: var(--text-dark);
+    margin: 1.75rem 0 1.5rem;
+}
+.story-sub {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text-dark);
+}
+.story-text > p:not(.story-sub) {
     margin-bottom: 1rem;
-    font-size: 0.97rem;
+    font-size: 0.92rem;
     line-height: 1.75;
 }
-.story-copy p:last-child { margin-bottom: 0; }
+.story-text > p:last-child { margin-bottom: 0; }
 
 /* ---------- Certifications ---------- */
 .certs-section {
@@ -1299,7 +1908,7 @@ ul { list-style: none; }
     max-width: 60ch;
 }
 
-/* Product carousel — tilted, staggered cards with the label on the image */
+/* Product carousel — upright cards: photo, name, blurb, link */
 .pcar-track {
     display: flex;
     gap: 1.25rem;
@@ -1308,80 +1917,106 @@ ul { list-style: none; }
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    /* Room for the rotation and vertical offsets, which the track would
-       otherwise clip since overflow-x:auto also constrains the y axis.
-       The side padding absorbs the width each rotated card gains, so a full
-       set still fits without leaving the arrows a few stray pixels to scroll. */
-    padding: 2.75rem 0.85rem;
+    /* room for the hover lift and the card shadow */
+    padding: 0.5rem 0.25rem 1.75rem;
 }
 .pcar-track::-webkit-scrollbar { display: none; }
 
 .pitem {
-    flex: 0 0 calc((100% - 3 * 1.25rem) / 4);
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+    padding: 0.85rem 0.85rem 1.3rem;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
     scroll-snap-align: start;
     text-decoration: none;
-    transition: transform var(--t);
+    transition: transform var(--t), box-shadow var(--t);
 }
-/* Alternating tilt and offset so the row reads as arranged, not gridded */
-.pitem:nth-child(4n + 1) { transform: rotate(-3deg) translateY(-12px); }
-.pitem:nth-child(4n + 2) { transform: rotate(2deg) translateY(9px); }
-.pitem:nth-child(4n + 3) { transform: rotate(-1.5deg) translateY(19px); }
-.pitem:nth-child(4n + 4) { transform: rotate(3deg) translateY(-6px); }
-.pitem:hover { transform: rotate(0deg) translateY(-6px); }
+.pitem:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
 
 .pitem-media {
-    position: relative;
     display: block;
-    aspect-ratio: 3 / 4;
-    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+    border-radius: 11px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
 }
-/* Scrim keeps the label readable over any part of the photo */
-.pitem-media::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 42%;
-    background: linear-gradient(180deg, rgba(10, 25, 15, 0), rgba(10, 25, 15, 0.72));
-}
-.pitem-name {
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: 1.35rem;
-    z-index: 1;
-    text-align: center;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
 
-/* Closing CTA card — same frame and tilt, solid tile instead of a photo */
-.pitem-cta .pitem-media {
+.pitem-body {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    padding: 1.15rem 0.5rem 0;
+}
+.pitem-name {
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+.pitem-desc {
+    margin-bottom: 1.1rem;
+    color: var(--text-mid);
+    font-size: 0.89rem;
+    line-height: 1.6;
+}
+/* margin-top:auto keeps the link on the card's foot so a row lines up */
+.pitem-link {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    background-color: var(--green-dark);
-    transition: background-color var(--t);
+    gap: 0.45rem;
+    margin-top: auto;
+    color: var(--green-dark);
+    font-size: 0.92rem;
+    font-weight: 600;
 }
-.pitem-cta:hover .pitem-media { background-color: var(--green-mid); }
-.pitem-cta .pitem-media::after { content: none; }
-.pitem-cta .pitem-name {
-    position: static;
-    padding: 0 1.4rem;
-}
-.pitem-arrow {
-    width: 38px;
-    height: 38px;
-    color: #fff;
+.pitem-link svg {
+    width: 17px;
+    height: 17px;
     transition: transform var(--t);
 }
-.pitem-cta:hover .pitem-arrow { transform: translate(4px, -4px); }
+.pitem:hover .pitem-link svg { transform: translateX(4px); }
+
+/* Outer columns are equal, so the arrows stay centred on the section while
+   the link sits out on the right edge. */
+.pcar-foot {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-top: 1.25rem;
+}
+.pcar-foot .pcar-nav {
+    grid-column: 2;
+    margin-top: 0;
+}
+
+/* Same treatment as the "More about us" link */
+.pcar-more {
+    grid-column: 3;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--green-dark);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.pcar-more svg {
+    width: 15px;
+    height: 15px;
+    transition: transform var(--t);
+}
+.pcar-more:hover { color: var(--green-mid); }
+.pcar-more:hover svg { transform: translate(3px, -3px); }
 
 .pcar-nav {
     display: flex;
@@ -1640,12 +2275,23 @@ ul { list-style: none; }
     line-height: 1.45;
     color: var(--text-dark);
 }
+/* Same arrow link the product cards use, in place of the filled button */
 .gcard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     align-self: flex-start;
     margin-top: auto;
-    padding: 0.72rem 1.4rem;
-    font-size: 0.85rem;
+    color: var(--green-dark);
+    font-size: 0.92rem;
+    font-weight: 600;
 }
+.gcard-btn svg {
+    width: 17px;
+    height: 17px;
+    transition: transform var(--t);
+}
+.gcard:hover .gcard-btn svg { transform: translateX(4px); }
 
 /* ================================================================
    FOOTER DISPLAY BAND (home only)
@@ -1842,6 +2488,11 @@ ul { list-style: none; }
 }
 
 @media (max-width: 968px) {
+    .gevents-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+    .findus-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .findus-media { aspect-ratio: 16 / 9; }
+
     .nav-menu {
         position: fixed;
         top: 72px;
@@ -1878,14 +2529,21 @@ ul { list-style: none; }
     .products-pills { flex-wrap: wrap; }
 
     .pcar-track { gap: 1rem; }
-    .pitem { flex-basis: calc((100% - 2 * 1rem) / 3); }
+    .pitem { flex-basis: calc((100% - 1rem) / 2); }
 
     .mission-grid { grid-template-columns: 1fr; gap: 2.25rem; }
 
     .footer-display { flex-direction: column; gap: 1rem; }
 
+    .reviews-head { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+    .rcard { flex-basis: calc((100% - 1.25rem) / 2); }
+
+    .prow { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .prow-feats { grid-template-columns: repeat(2, 1fr); }
+
     .story-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .story-media { min-height: 300px; }
+    .story-figure { margin-top: 0; order: 2; }
+    .story-text { order: 1; }
     .certs-grid { grid-template-columns: 1fr; }
 
     .strengths-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -1919,6 +2577,11 @@ ul { list-style: none; }
 }
 
 @media (max-width: 560px) {
+    .gevents-grid { grid-template-columns: 1fr; }
+    .contact-map iframe { height: 210px; }
+    .findus-media { aspect-ratio: 4 / 3; }
+    .cform { padding: 1.4rem; }
+
     .nav-wrap { padding: 0.75rem 1rem; gap: 1rem; }
     .brand-sub { display: none; }
     .brand-name { font-size: 1rem; }
@@ -1929,8 +2592,12 @@ ul { list-style: none; }
     .gallery-grid { grid-template-columns: 1fr; }
 
     .scard-row { grid-template-columns: 1fr; gap: 2rem; }
-    .pitem { flex-basis: calc((100% - 1rem) / 2); }
+    .pitem { flex-basis: 86%; }
     .pcar-btn { width: 46px; height: 46px; }
+    .pcar-foot { grid-template-columns: 1fr; justify-items: center; gap: 1.25rem; }
+    .pcar-foot .pcar-nav { grid-column: 1; }
+    .pcar-more { grid-column: 1; justify-self: center; }
+    .rcard { flex-basis: 88%; }
     .mission-stats { grid-template-columns: 1fr; gap: 1.75rem; }
 
     .product-grid { grid-template-columns: 1fr; }
