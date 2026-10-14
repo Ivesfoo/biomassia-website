@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Local preview folder for drag-and-drop deploys; rebuilt on demand
+_preview-build/
