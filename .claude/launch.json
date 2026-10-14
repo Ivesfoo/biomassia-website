@@ -3,11 +3,7 @@
   "configurations": [
     {
       "name": "biomassia",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-I",
-        "/Users/afadhli/Desktop/Biomassia/Biomassia-Website/.claude/serve.py"
-      ],
+      "url": "http://127.0.0.1:8765",
       "port": 8765
     }
   ]

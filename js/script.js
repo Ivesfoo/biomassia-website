@@ -45,8 +45,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (slides.length > 0 && dots.length === slides.length) {
         let currentSlide = 0;
-        let autoTimer = null;
-        const AUTO_INTERVAL = 6000;
+        let advanceTimer = null;
+        let paused = false;
+        // Only a backstop: used when there is no clip to wait on, or when
+        // 'ended' cannot fire because autoplay was blocked or decoding failed.
+        const FALLBACK_MS = 9000;
+
+        const activeVideo = () => bgs[currentSlide] && bgs[currentSlide].querySelector('video');
+
+        function clearAdvance() {
+            clearTimeout(advanceTimer);
+            advanceTimer = null;
+        }
+
+        // Normally the clip's own 'ended' event moves the hero on; this timer
+        // just guarantees the slider never stalls if that event never arrives.
+        function armAdvance() {
+            clearAdvance();
+            if (paused) return;
+            const v = activeVideo();
+            let ms = FALLBACK_MS;
+            if (v && !reduceMotion && isFinite(v.duration) && v.duration > 0) {
+                ms = Math.max(0, (v.duration - v.currentTime) * 1000) + 1500;
+            }
+            advanceTimer = setTimeout(() => goToSlide(currentSlide + 1), ms);
+        }
 
         function goToSlide(index) {
             currentSlide = (index + slides.length) % slides.length;
@@ -62,37 +85,51 @@ document.addEventListener('DOMContentLoaded', function () {
                 const video = b.querySelector('video');
                 if (!video) return;
                 if (i === currentSlide && !reduceMotion) {
+                    // restart, so each slide always shows the clip from the top
+                    try { video.currentTime = 0; } catch (e) {}
                     video.play().catch(() => {});
                 } else {
                     video.pause();
                 }
             });
+            armAdvance();
         }
 
-        function startAuto() {
-            stopAuto();
-            autoTimer = setInterval(() => goToSlide(currentSlide + 1), AUTO_INTERVAL);
-        }
-        function stopAuto() {
-            if (autoTimer) {
-                clearInterval(autoTimer);
-                autoTimer = null;
-            }
-        }
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-                startAuto();
+        bgs.forEach((b, i) => {
+            const v = b.querySelector('video');
+            if (!v) return;
+            // looping would mean 'ended' never fires
+            v.loop = false;
+            v.addEventListener('ended', () => {
+                if (i === currentSlide && !paused) goToSlide(currentSlide + 1);
+            });
+            // duration is often unknown on the first pass, so re-arm the
+            // backstop with the real length once metadata arrives
+            v.addEventListener('loadedmetadata', () => {
+                if (i === currentSlide) armAdvance();
             });
         });
 
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => goToSlide(i));
+        });
+
         if (hero) {
-            hero.addEventListener('mouseenter', stopAuto);
-            hero.addEventListener('mouseleave', startAuto);
+            hero.addEventListener('mouseenter', () => {
+                paused = true;
+                clearAdvance();
+                const v = activeVideo();
+                if (v) v.pause();
+            });
+            hero.addEventListener('mouseleave', () => {
+                paused = false;
+                const v = activeVideo();
+                if (v && !reduceMotion) v.play().catch(() => {});
+                armAdvance();
+            });
         }
 
-        startAuto();
+        goToSlide(0);
     }
 
     /* ---------- Horizontal Carousels ---------- */
