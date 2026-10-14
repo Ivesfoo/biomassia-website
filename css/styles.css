@@ -733,7 +733,7 @@ ul { list-style: none; }
    intro copy as one block, sitting below the faces in the hero photo. */
 .page-hero {
     position: relative;
-    min-height: 72vh;
+    min-height: 78vh;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -753,7 +753,9 @@ ul { list-style: none; }
     inset: auto 0 -1px 0;
     /* above the photo and its tint, below .page-hero-inner (z-index 2) */
     z-index: 1;
-    height: 9%;
+    /* Fixed, not a percentage: as a share of the hero it grew with the
+       viewport and started swallowing the copy on tall screens. */
+    height: 80px;
     pointer-events: none;
     background: linear-gradient(180deg,
         var(--hero-fade-0) 0%,
@@ -786,7 +788,7 @@ ul { list-style: none; }
     position: relative;
     z-index: 2;
     padding-top: 7rem;
-    padding-bottom: 4rem;
+    padding-bottom: 3.5rem;
     text-align: center;
 }
 .page-hero-title {
