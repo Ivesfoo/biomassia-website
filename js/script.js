@@ -305,6 +305,45 @@ document.addEventListener('DOMContentLoaded', function () {
         update();
     }
 
+    /* ---------- Group structure tabs ---------- */
+    const grpTabs = Array.from(document.querySelectorAll('.grp-tab'));
+
+    if (grpTabs.length) {
+        const grpPanels = grpTabs.map(
+            (t) => document.getElementById(t.getAttribute('aria-controls'))
+        );
+
+        const selectGrp = (index, moveFocus) => {
+            grpTabs.forEach((tab, i) => {
+                const on = i === index;
+                tab.classList.toggle('is-active', on);
+                tab.setAttribute('aria-selected', String(on));
+                // Roving tabindex: the tablist is one stop, arrows move within it.
+                tab.tabIndex = on ? 0 : -1;
+                if (grpPanels[i]) grpPanels[i].classList.toggle('is-active', on);
+            });
+            if (moveFocus) grpTabs[index].focus();
+        };
+
+        grpTabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => selectGrp(i));
+
+            tab.addEventListener('keydown', (e) => {
+                const last = grpTabs.length - 1;
+                let next = null;
+
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = i === last ? 0 : i + 1;
+                else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = i === 0 ? last : i - 1;
+                else if (e.key === 'Home') next = 0;
+                else if (e.key === 'End') next = last;
+
+                if (next === null) return;
+                e.preventDefault();
+                selectGrp(next, true);
+            });
+        });
+    }
+
     /* ---------- Scroll Reveal ---------- */
     const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-mask, .reveal-letters, .reveal-cards, .reveal-pop');
 

@@ -1934,11 +1934,64 @@ ul { list-style: none; }
    ================================================================ */
 /* Cream band marks where the products section starts, so the boundary with the
    statement section above reads as deliberate rather than as a gap. */
-.bigtitle-section { padding: 5rem 0 3.5rem; background: var(--ink); overflow: hidden; }
-.bigtitle-section .display-xl {
+/* Small bottom padding only: .catalog-section follows on the same --ink
+   background and brings its own 3.5rem on top. Full padding on both sides of
+   an invisible seam just doubles into a void. */
+.bigtitle-section { padding: 5rem 0 1.5rem; background: var(--ink); overflow: hidden; }
+
+/* ---------- Product subsection headers ----------
+   Both halves of the products block open the same way: eyebrow, heading, then
+   a supporting line. On --ink, --green-light measures only 4.16:1 and fails AA
+   at eyebrow size, so the eyebrow takes the lighter green the footer mark
+   already uses (8.6:1). */
+.sub-head {
+    margin: 0 0 2rem;
     text-align: center;
-    margin-bottom: 2rem;
+}
+.sub-head .kicker {
+    /* Up from the 0.72rem base: next to a display size the default reads as a
+       stray line rather than a label on the heading. */
+    margin-bottom: 0.7rem;
+    font-size: 0.8rem;
+    color: #9bbfa5;
+}
+.sub-head-title {
+    margin: 0;
     color: #fff;
+    font-size: clamp(1.6rem, 3.4vw, 2.9rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+}
+/* A name is set in caps; a statement keeps its own case and stays readable. */
+.sub-head-title--caps { text-transform: uppercase; }
+
+/* The product tagline: larger than body copy, lighter than the heading. */
+.sub-head-lead {
+    margin: 0.9rem auto 0;
+    max-width: 40ch;
+    color: var(--on-ink);
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    line-height: 1.5;
+}
+/* The explanatory sentence stays at body size, centred under its heading. */
+.sub-head .cat-mission {
+    margin: 1.1rem auto 0;
+    max-width: 58ch;
+    text-align: center;
+}
+
+/* The product shot that closes the first subsection. Held well short of the
+   container: at full width it ran 671px tall and swamped the header block it
+   belongs to. Narrower also keeps it inside the source image's 1536px. */
+.product-feature {
+    max-width: 880px;
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    background-image: url('../images/pellets.webp');
+    background-size: cover;
+    background-position: center;
 }
 
 .products-meta {
@@ -2177,8 +2230,18 @@ ul { list-style: none; }
     background-position: center;
     color: #fff;
 }
+/* Centred label over the band headline, same light green as the products
+   section eyebrow (4.89:1 on the veil, so it clears AA). */
+.mission-kicker {
+    margin-bottom: 0.6rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9bbfa5;
+}
 .mission-head {
-    max-width: 24ch;
+    /* 24ch suited the old two-line phrase; this headline reads as one line
+       wherever there is room for it. */
+    max-width: 46ch;
     margin: 0 auto 2.25rem;
     text-align: center;
     color: #fff;
@@ -2265,6 +2328,178 @@ ul { list-style: none; }
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.88rem;
     line-height: 1.55;
+}
+
+.mission-foot {
+    margin: 1.75rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1rem;
+}
+
+/* ================================================================
+   GROUP STRUCTURE (Edubest / residues / Biomassia)
+   ================================================================ */
+.group-section {
+    padding: 4.5rem 0 4.75rem;
+    background: var(--bg-white);
+}
+
+.grp-head {
+    margin-bottom: 2.25rem;
+    text-align: center;
+}
+.grp-head .kicker {
+    margin-bottom: 0.6rem;
+    color: var(--green-mid);
+}
+.grp-head h2 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+}
+.grp-head-lead {
+    max-width: 62ch;
+    margin: 0.9rem auto 0;
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+/* ---- the three cards ---- */
+.grp-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.grp-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.2rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg-white);
+    color: var(--text-dark);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background var(--t), border-color var(--t),
+                transform var(--t), box-shadow var(--t);
+}
+.grp-tab-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.25rem;
+    color: var(--text-light);
+    transition: color var(--t), transform var(--t);
+}
+.grp-tab-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+/* The step in the chain, kept quiet so the name still reads first. */
+.grp-tab-num {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.grp-tab:hover {
+    border-color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.grp-tab:hover .grp-tab-icon { color: var(--green-mid); }
+.grp-tab:focus-visible {
+    outline: 2px solid var(--green-mid);
+    outline-offset: 2px;
+}
+
+.grp-tab.is-active {
+    background: var(--bg-cream);
+    border-color: #c3c8ce;
+}
+.grp-tab.is-active .grp-tab-icon { color: var(--green-mid); }
+
+/* ---- the link running between them ---- */
+/* A slow highlight travelling left to right: Edubest, through the residues,
+   to Biomassia. Two layers — the travelling band over a static hairline. */
+.grp-flow {
+    height: 2px;
+    margin: 1.25rem 0 2rem;
+    border-radius: 2px;
+    background-image:
+        linear-gradient(90deg, rgba(45, 106, 62, 0) 0%, var(--green-mid) 50%,
+                               rgba(45, 106, 62, 0) 100%),
+        linear-gradient(var(--border), var(--border));
+    background-size: 26% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: -30% 0, 0 0;
+    animation: grp-flow 5.5s linear infinite;
+}
+@keyframes grp-flow {
+    to { background-position: 130% 0, 0 0; }
+}
+
+/* ---- the panel the cards switch between ---- */
+/* All three share one grid cell, so the block is as tall as the longest and
+   switching tabs cannot jog the page. visibility (not display) keeps that
+   height while taking the inactive ones out of the tab order. */
+.grp-panels { display: grid; }
+.grp-panel {
+    grid-area: 1 / 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+.grp-panel.is-active {
+    visibility: visible;
+    opacity: 1;
+}
+.grp-panel .kicker {
+    margin-bottom: 0.7rem;
+    color: var(--green-mid);
+}
+.grp-panel-title {
+    margin: 0 0 0.7rem;
+    color: var(--text-dark);
+    font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+.grp-panel-text {
+    max-width: 68ch;
+    margin: 0;
+    color: var(--text-mid);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+    .grp-tabs { grid-template-columns: 1fr; gap: 0.6rem; }
+    .grp-tab { flex-direction: row; justify-content: center; }
+}
+
+/* The travelling highlight and the card lift are decoration; hold them still
+   and leave the hairline and the colour change to carry the state. */
+@media (prefers-reduced-motion: reduce) {
+    .grp-flow {
+        animation: none;
+        background-image: linear-gradient(var(--border), var(--border));
+        background-size: 100% 100%;
+        background-position: 0 0;
+    }
+    .grp-tab { transition: background var(--t), border-color var(--t); }
+    .grp-tab:hover { transform: none; box-shadow: none; }
+    .grp-panel { transition: none; }
 }
 
 /* ================================================================
