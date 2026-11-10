@@ -10,12 +10,18 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
+    # Source files are edited constantly, so they must never be served from
+    # cache: "no-cache" only asks for revalidation, and a 304 slipped through
+    # often enough to hide a change and send us debugging a phantom bug.
+    # Media is large and does not change, so it keeps the cheap revalidation.
+    NO_STORE = (".html", ".css", ".js", ".json", ".svg")
+
     def end_headers(self):
-        # no-cache, not no-store: the browser must revalidate every request, so
-        # edits always show, but unchanged files come back as a cheap 304 rather
-        # than being re-downloaded. Sending nothing at all lets Chrome cache
-        # heuristically and serve stale pages after an edit.
-        self.send_header("Cache-Control", "no-cache")
+        path = self.path.split("?", 1)[0]
+        if path.endswith("/") or path.lower().endswith(self.NO_STORE):
+            self.send_header("Cache-Control", "no-store, max-age=0")
+        else:
+            self.send_header("Cache-Control", "no-cache")
         super().end_headers()
 
 

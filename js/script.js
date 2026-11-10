@@ -238,6 +238,52 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /* ---------- Our Story photo cycle ---------- */
+    const storyPhoto = document.querySelector('.story-photo');
+
+    if (storyPhoto && !reduceMotion && 'IntersectionObserver' in window) {
+        const frames = Array.from(storyPhoto.querySelectorAll('.story-frame'));
+
+        if (frames.length > 1) {
+            const HOLD = 4500;
+            const FADE = 1100;      // matches the CSS transition on .story-frame
+            let index = 0;
+            let timer = null;
+
+            const show = (next) => {
+                const outgoing = frames[index];
+                index = (next + frames.length) % frames.length;
+                const incoming = frames[index];
+                if (incoming === outgoing) return;
+
+                frames.forEach((f) => f.classList.remove('is-top'));
+                incoming.classList.add('is-top', 'is-on');
+                // Hold the old frame until the new one has fully covered it.
+                setTimeout(() => outgoing.classList.remove('is-on'), FADE);
+            };
+
+            // Only fetch the later frames, and only run the timer, once someone
+            // has actually reached the story.
+            const storyObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        frames.forEach((f) => {
+                            if (!f.dataset.src) return;
+                            f.style.backgroundImage = 'url("' + f.dataset.src + '")';
+                            delete f.dataset.src;
+                        });
+                        if (!timer) timer = setInterval(() => show(index + 1), HOLD);
+                    } else {
+                        clearInterval(timer);
+                        timer = null;
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            storyObserver.observe(storyPhoto);
+        }
+    }
+
     /* ---------- Stat count-up ---------- */
     const counters = document.querySelectorAll('[data-count]');
 
