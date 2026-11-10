@@ -538,7 +538,10 @@ ul { list-style: none; }
 /* Slide stack */
 .hero-slides {
     position: relative;
-    min-height: 380px;
+    /* The slides are absolutely positioned, so this box has to be told how
+       tall the longest one is. Slide 2 runs 407px; below ~410 its button
+       collides with the pill row underneath. */
+    min-height: 420px;
 }
 .hero-slide {
     position: absolute;
